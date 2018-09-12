@@ -2,4 +2,5 @@
     <string name="app_name">DinoDine</string>
     <string name="book_table">Book Table</string>
     <string name="view_bookings">View Bookings</string>
+    <string name="select_a_time_for">Select a Time for</string>
 </resources>

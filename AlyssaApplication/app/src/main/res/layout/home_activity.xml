@@ -18,14 +18,14 @@
         android:textSize="48sp"
         android:textStyle="bold"
         android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/ViewBookings"
+        app:layout_constraintBottom_toTopOf="@+id/viewBookings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/ViewBookings"
+        android:id="@+id/viewBookings"
         android:layout_width="500dp"
         android:layout_height="150dp"
         android:background="@drawable/roundedbutton"
