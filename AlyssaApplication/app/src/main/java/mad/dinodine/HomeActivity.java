@@ -25,8 +25,8 @@ public class HomeActivity extends AppCompatActivity {
 
                 //Starting the book table intent --> go to people screen
                 //TODO confirm name of people screen
-                Intent create_Booking = new Intent(this, PeopleActivity.class);
-                startActivity(create_Booking);
+               // Intent create_Booking = new Intent(this, PeopleActivity.class);
+                //startActivity(create_Booking);
             }
         });
 
@@ -35,8 +35,8 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //go to table/list view screen
                 //TODO confirm name of screen 7
-                Intent lookup_Bookings = new Intent(this, LookupViewActivity.class);
-                startActivity(lookup_Bookings);
+               // Intent lookup_Bookings = new Intent(this, LookupViewActivity.class);
+               // startActivity(lookup_Bookings);
             }
         });
 
