@@ -1,5 +1,6 @@
 package mad.dinodine;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,14 +23,20 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //TODO Start the book table sequence --> go to people screen
+                //Starting the book table intent --> go to people screen
+                //TODO confirm name of people screen
+                Intent create_Booking = new Intent(this, PeopleActivity.class);
+                startActivity(create_Booking);
             }
         });
 
         viewBooked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO go to table/list view screen
+                //go to table/list view screen
+                //TODO confirm name of screen 7
+                Intent lookup_Bookings = new Intent(this, LookupViewActivity.class);
+                startActivity(lookup_Bookings);
             }
         });
 
