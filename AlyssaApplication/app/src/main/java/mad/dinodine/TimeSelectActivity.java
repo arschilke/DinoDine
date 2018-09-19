@@ -1,14 +1,17 @@
 package mad.dinodine;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class TimeSelectActivity extends AppCompatActivity {
     Button start[], finish[];
     TextView DateTV;
+    ImageButton submitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,5 +54,14 @@ public class TimeSelectActivity extends AppCompatActivity {
                 }
             });
         }
+
+        submitBtn = findViewById(R.id.submitTimeBtn);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getParentActivityIntent();
+
+            }
+        });
     }
 }

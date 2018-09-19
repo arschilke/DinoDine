@@ -4,7 +4,18 @@ public class Guest {
     String firstName, lastName, phoneNum, phoneExt, titleName, email, diet;
     int guestID;
 
-    Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email, String diet){
+    public Guest() {
+        this.firstName = "";
+        this.lastName = "";
+        this.phoneExt = "";
+        this.phoneNum = "";
+        this.titleName = "";
+        this.email = "";
+        this.diet = "";
+        this.guestID = -1;
+    }
+
+    public Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email, String diet){
         this.firstName = fname;
         this.lastName = lName;
         this.phoneExt = phoneExt;
@@ -14,7 +25,7 @@ public class Guest {
         this.diet = diet;
         generateGuestID();
     }
-    Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email,String diet, int guestID){
+    public Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email,String diet, int guestID){
         this.firstName = fname;
         this.lastName = lName;
         this.phoneExt = phoneExt;
@@ -27,8 +38,8 @@ public class Guest {
 
     public void generateGuestID(){
         //TODO code generate Guest ID
-        if(guestID == 0)
-            guestID = 1;
+        if(guestID == -1)
+            guestID = 0;
     }
     //Useful methods
     public Guest lookupByID(int guestID){
@@ -97,5 +108,19 @@ public class Guest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Guest{" +
+                " firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", phoneExt='" + phoneExt + '\'' +
+                ", titleName='" + titleName + '\'' +
+                ", email='" + email + '\'' +
+                ", diet='" + diet + '\'' +
+                ", guestID=" + guestID +
+                '}';
     }
 }
