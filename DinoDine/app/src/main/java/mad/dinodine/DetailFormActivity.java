@@ -1,5 +1,6 @@
 package mad.dinodine;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,14 @@ public class DetailFormActivity extends AppCompatActivity {
     Spinner article, DietRestrict;
     EditText fName, lName, phoneNum, emailET, phoneExt;
     Button submitBtn;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_form);
+
+        intent = getIntent();
+
 
         article = findViewById(R.id.article);
         DietRestrict = findViewById(R.id.dietRestrict);
@@ -38,6 +43,10 @@ public class DetailFormActivity extends AppCompatActivity {
                 //Creating Guest, need to add to Booking as well
                 Guest PersonInfo = new Guest(fName.getText().toString(),lName.getText().toString(), phoneNum.getText().toString(),
                         phoneExt.getText().toString(), article.getSelectedItem().toString(), emailET.getText().toString(),DietRestrict.getSelectedItem().toString());
+
+                Booking bookingNow = (Booking) intent.getSerializableExtra("bookingNow");
+                bookingNow.setGuest(PersonInfo);
+
                 //TODO create DB handler to add the new Details to DB/associate with booking
             }
         });

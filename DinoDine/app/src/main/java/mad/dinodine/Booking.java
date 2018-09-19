@@ -1,5 +1,8 @@
 package mad.dinodine;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -111,4 +114,6 @@ public class Booking {
                 ", date=" + date +
                 '}';
     }
+
+
 }
