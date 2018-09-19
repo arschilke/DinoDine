@@ -1,25 +1,27 @@
 package mad.dinodine;
 
 public class Guest {
-    String firstName, lastName, phoneNum, phoneExt, titleName, email;
+    String firstName, lastName, phoneNum, phoneExt, titleName, email, diet;
     int guestID;
 
-    Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email){
+    Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email, String diet){
         this.firstName = fname;
         this.lastName = lName;
         this.phoneExt = phoneExt;
         this.phoneNum = phoneNum;
         this.titleName = title;
         this.email = email;
+        this.diet = diet;
         generateGuestID();
     }
-    Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email, int guestID){
+    Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email,String diet, int guestID){
         this.firstName = fname;
         this.lastName = lName;
         this.phoneExt = phoneExt;
         this.phoneNum = phoneNum;
         this.titleName = title;
         this.email = email;
+        this.diet = diet;
         this.guestID = guestID;
     }
 

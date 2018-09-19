@@ -79,14 +79,15 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <Spinner
+                <EditText
                     android:id="@+id/phoneExt"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:entries="@array/ext"
-                    tools:layout_editor_absoluteX="109dp"
-                    tools:layout_editor_absoluteY="244dp" />
+                    android:ems="10"
+                    android:hint="+61"
+                    android:inputType="textPersonName"
+                    android:textSize="24sp" />
 
                 <EditText
                     android:id="@+id/phone"
@@ -107,6 +108,11 @@
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:textSize="24sp" />
+
+            <Spinner
+                android:id="@+id/dietRestrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/submitBtn"

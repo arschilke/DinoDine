@@ -9,8 +9,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class DetailFormActivity extends AppCompatActivity {
-    Spinner article, phoneExt;
-    EditText fName, lName, phoneNum, emailET;
+    Spinner article, DietRestrict;
+    EditText fName, lName, phoneNum, emailET, phoneExt;
     Button submitBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +18,9 @@ public class DetailFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_form);
 
         article = findViewById(R.id.article);
-        phoneExt = findViewById(R.id.phoneExt);
+        DietRestrict = findViewById(R.id.dietRestrict);
 
+        phoneExt = findViewById(R.id.phoneExt);
         fName = findViewById(R.id.firstName);
         lName = findViewById(R.id.lastName);
         phoneNum = findViewById(R.id.phone);
@@ -36,7 +37,7 @@ public class DetailFormActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Creating Guest, need to add to Booking as well
                 Guest PersonInfo = new Guest(fName.getText().toString(),lName.getText().toString(), phoneNum.getText().toString(),
-                        phoneExt.getSelectedItem().toString(), article.getSelectedItem().toString(), emailET.getText().toString());
+                        phoneExt.getText().toString(), article.getSelectedItem().toString(), emailET.getText().toString(),DietRestrict.getSelectedItem().toString());
                 //TODO create DB handler to add the new Details to DB/associate with booking
             }
         });
