@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">DinoDine</string>
+    <string name="book_table">Book Table</string>
+    <string name="view_bookings">View Bookings</string>
+
+    <string name="select_a_time_for">Select a Time for </string>
+    <string name="date_here">Date Here</string>
+    <string name="start">Start</string>
+    <string name="defaultTime">##:## pm</string>
+    <string name="enter_details">Enter Details</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="submit">Submit</string>
+    <string name="finish">Finish</string>
+
+    <string-array name="titleName">
+        <item>Mr.</item>
+        <item>Mrs.</item>
+        <item>Miss</item>
+        <item>Ms.</item>
+    </string-array>
+    <string-array name="ext">
+        <item>+1</item>
+        <item>+61</item>
+    </string-array>
+    <!--TODO add in other countries ext-->
+</resources>
