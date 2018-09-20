@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DinoDine</string>
+    <string-array name="PeopleNum">
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+</resources>
