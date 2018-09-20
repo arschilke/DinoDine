@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class TableViewListView extends AppCompatActivity {
+public class TableViewListViewActivity extends AppCompatActivity {
 
     Button listViewBtn, tableViewBtn;
 

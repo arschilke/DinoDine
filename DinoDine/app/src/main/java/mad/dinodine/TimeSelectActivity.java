@@ -8,20 +8,24 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.Date;
+
 public class TimeSelectActivity extends AppCompatActivity {
     Button start[], finish[];
     TextView DateTV;
     ImageButton submitBtn;
+    Booking bookingNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_select);
 
+        Intent intent = getIntent();
+        bookingNow = (Booking) intent.getSerializableExtra("bookingNow");
 
         TextView DateTV = findViewById(R.id.DateText);
-        //TODO retreive value for Date TextView
-        DateTV.setText("Set Date");
+        DateTV.setText(bookingNow.getDateString());
 
         //array for start btns
         for(int x = 1; x <= 9; x++){
@@ -59,7 +63,8 @@ public class TimeSelectActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getParentActivityIntent();
+               //todo get selected btns value, convert to Date OBJ then setDate in Booking
+
 
             }
         });

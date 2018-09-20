@@ -3,7 +3,6 @@ package mad.dinodine;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,10 +24,10 @@ public class HomeActivity extends AppCompatActivity {
 
                 //Starting the book table intent --> go to people screen
                 //TODO confirm name of people screen
-               /*Intent create_Booking = new Intent(HomeActivity.this, PeopleActivity.class);
+               Intent create_Booking = new Intent(HomeActivity.this, PeopleSelectActivity.class);
                 Booking bookingNow = new Booking();
-                create_booking.putExtra("bookingNow", bookingNow);
-                startActivity(create_Booking);*/
+                create_Booking.putExtra("bookingNow", bookingNow);
+                startActivity(create_Booking);
             }
         });
 
@@ -36,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //go to table/list view screen
-                Intent lookup_Bookings = new Intent(HomeActivity.this, TableViewListView.class);
+                Intent lookup_Bookings = new Intent(HomeActivity.this, TableViewListViewActivity.class);
                 startActivity(lookup_Bookings);
 
             }

@@ -18,7 +18,7 @@
             </activity>
         <activity android:name=".TimeSelectActivity"></activity>
         <activity android:name=".DetailFormActivity"></activity>
-        <activity android:name=".TableViewListView"></activity>
+        <activity android:name=".TableViewListViewActivity"></activity>
 
     </application>
 

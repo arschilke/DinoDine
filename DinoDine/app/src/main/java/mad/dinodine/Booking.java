@@ -3,13 +3,14 @@ package mad.dinodine;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 
-public class Booking {
+public class Booking implements Serializable{
 
     int bookingID;
     Guest guest;
@@ -100,6 +101,8 @@ public class Booking {
         return date;
     }
 
+    public String getDateString() {return date.toString();}
+
     public void setDate(Date date) {
         this.date = date;
     }
@@ -114,6 +117,7 @@ public class Booking {
                 ", date=" + date +
                 '}';
     }
+
 
 
 }
