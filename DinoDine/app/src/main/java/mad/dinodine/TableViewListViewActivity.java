@@ -1,5 +1,6 @@
 package mad.dinodine;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,14 +22,18 @@ public class TableViewListViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //go to List View screen
+                Intent create_Booking = new Intent(TableViewListViewActivity.this, BookingViewActivity.class);
+                startActivity(create_Booking);
             }
         });
 
         tableViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //go to Table View screen
+                Intent create_Booking = new Intent(TableViewListViewActivity.this, TableSelectActivity.class);
+                startActivity(create_Booking);
             }
         });
     }
