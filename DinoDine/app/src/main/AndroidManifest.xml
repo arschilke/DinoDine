@@ -16,9 +16,12 @@
                     <category android:name="android.intent.category.LAUNCHER" />
                 </intent-filter>
             </activity>
+        <activity android:name=".TableViewListViewActivity"></activity>
+        <activity android:name=".PeopleSelectActivity"></activity>
+        <activity android:name=".SelectDateActivity"></activity>
         <activity android:name=".TimeSelectActivity"></activity>
         <activity android:name=".DetailFormActivity"></activity>
-        <activity android:name=".TableViewListViewActivity"></activity>
+
 
     </application>
 

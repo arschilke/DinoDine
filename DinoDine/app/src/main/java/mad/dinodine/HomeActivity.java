@@ -23,7 +23,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Starting the book table intent --> go to people screen
-                //TODO confirm name of people screen
                Intent create_Booking = new Intent(HomeActivity.this, PeopleSelectActivity.class);
                 Booking bookingNow = new Booking();
                 create_Booking.putExtra("bookingNow", bookingNow);

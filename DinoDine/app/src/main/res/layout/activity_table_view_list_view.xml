@@ -12,34 +12,36 @@
         android:layout_width="500dp"
         android:layout_height="150dp"
         android:background="@drawable/roundedbutton"
-        android:text="Table View"
+        android:text="@string/table_view"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#FFF"
+        android:textColor="@color/colorPrimaryLight"
         android:textSize="48sp"
         android:textStyle="bold"
         android:typeface="normal"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/listViewBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
         android:id="@+id/listViewBtn"
         android:layout_width="500dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="28dp"
         android:background="@drawable/roundedbutton"
-        android:text="List View"
+        android:text="@string/list_view"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#FFF"
+        android:textColor="@color/colorPrimaryLight"
         android:textSize="48sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-        <!--app:layout_constraintTop_toBottomOf="@+id/bookTable"-->
-
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableViewBtn" />
 
 </android.support.constraint.ConstraintLayout>

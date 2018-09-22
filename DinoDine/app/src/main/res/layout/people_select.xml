@@ -30,48 +30,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal"
-            android:padding="40dp">
+            android:paddingBottom="40dp"
+            android:paddingTop="40dp">
 
             <Button
-                android:id="@+id/button1"
-                android:layout_width="100dp"
+                android:id="@+id/num1"
+                android:layout_width="110dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="1" />
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="100dp"
+                android:id="@+id/num2"
+                android:layout_width="110dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="2" />
 
             <Button
-                android:id="@+id/button3"
-                android:layout_width="100dp"
+                android:id="@+id/num3"
+                android:layout_width="110dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="3" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
-                android:layout_marginRight="30dp"
-                android:layout_weight="1"
-                android:fadeScrollbars="false"
-                android:isScrollContainer="false"
-                android:text="4+"
-                android:visibility="gone" />
 
             <Spinner
                 android:id="@+id/spinner4plus"
                 style="@android:style/Widget.Button"
-                android:layout_width="100dp"
+                android:layout_width="130dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:background="@android:drawable/btn_dropdown" />
@@ -86,7 +78,7 @@
             <!--marginStart=400dp-->
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/confirmPeople"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

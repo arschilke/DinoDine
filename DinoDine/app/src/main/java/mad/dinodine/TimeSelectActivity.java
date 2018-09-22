@@ -21,15 +21,18 @@ public class TimeSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_select);
 
-        Intent intent = getIntent();
-        bookingNow = (Booking) intent.getSerializableExtra("bookingNow");
+        //initialise arrays.
+        start = new Button[9];
+        finish = new Button[3];
+        //Intent intent = getIntent();
+        //bookingNow = (Booking) intent.getSerializableExtra("bookingNow");
 
-        TextView DateTV = findViewById(R.id.DateText);
-        DateTV.setText(bookingNow.getDateString());
+        //TextView DateTV = findViewById(R.id.DateText);
+        //DateTV.setText(bookingNow.getDateString());
 
         //array for start btns
-        for(int x = 1; x <= 9; x++){
-            String btnID = "btn" + x;
+        for(int x = 0; x < 9; x++){
+            String btnID = "btn" + (x + 1);
             int idNum = getResources().getIdentifier(btnID, "id", getPackageName());
             start[x] = findViewById(idNum);
             //TODO look up values for each btn; on click listener for each btn
@@ -43,8 +46,8 @@ public class TimeSelectActivity extends AppCompatActivity {
             });
         }
         //array for finish btns
-        for(int x = 1; x <= 3; x++){
-            String btnID = "FBtn" + x;
+        for(int x = 0; x < 3; x++){
+            String btnID = "FBtn" + (x + 1);
             int idNum = getResources().getIdentifier(btnID, "id", getPackageName());
             finish[x] = findViewById(idNum);
             //TODO look up values for each btn; on click listener for each btn
