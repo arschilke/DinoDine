@@ -9,57 +9,41 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 public class PeopleSelectActivity extends AppCompatActivity {
-    Button btns[], done;
-    int numOfPeople;
+
+    Button num1;
+    Button num2;
+    Button num3;
+    Button confirmPeople;
+
+    Spinner spinner4plus;
+
+    private int numOfPpl = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.people_select);
 
-        Intent intent = getIntent();
-        final Booking bookingNow = (Booking) intent.getSerializableExtra("bookingNow");
+        num1 = findViewById(R.id.num1);
+        num2 = findViewById(R.id.num2);
+        num3 = findViewById(R.id.num3);
+        confirmPeople = findViewById(R.id.confirmPeople);
+        spinner4plus = findViewById(R.id.spinner4plus);
 
-
-
-        for(int x = 1; x<=3; x++) {
-            String btnID = "button" + x;
-            int idNum = getResources().getIdentifier(btnID, "id", getPackageName());
-            btns[x] = findViewById(idNum);
-            //TODO look up values for each btn; on click listener for each btn
-            final int finalX = x;
-            btns[x].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //TODO change background to signal selected and unselect others
-                        numOfPeople = finalX;
-
-                    }
-                });
-        }
-
-
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner4plus);
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.PeopleNum, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+        //Pulls values from strings.xml [string-array: peopleNum) for number of people.
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.peopleNum, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        spinner4plus.setAdapter(adapter);
 
-
-       //TODO code to get Spinner item if btns not selected
-
-        done = findViewById(R.id.button6);
-
-        done.setOnClickListener(new View.OnClickListener() {
+        confirmPeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (numOfPeople <= 0){
-                    //Todo toast reminder to select an option
-                }
-                bookingNow.setNumOfPeople(numOfPeople);
+
+
+                Intent create_Booking = new Intent(getApplicationContext(), SelectDateActivity.class);
+                Booking bookingNow = new Booking();
+                create_Booking.putExtra("bookingNow", bookingNow);
+                startActivity(create_Booking);
             }
         });
 
