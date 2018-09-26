@@ -92,7 +92,6 @@ public class PeopleSelectActivity extends AppCompatActivity {
         });
 
 
-<<<<<<< HEAD
         confirmPeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,8 +125,3 @@ public class PeopleSelectActivity extends AppCompatActivity {
         confirmPeople.setEnabled(false);
     }*/
 }
-
-=======
-    }
-}
->>>>>>> 6760a05d39a5ca58b685470479f2810addb9f06b

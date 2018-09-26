@@ -12,6 +12,14 @@ import android.widget.Toast;
 
 import java.util.Date;
 
+
+/*
+****
+****
+****  Use date pickers instead of a button interface?
+****
+ */
+
 public class TimeSelectActivity extends AppCompatActivity {
     Button start[], finish[];
     //CalendarView calView;
