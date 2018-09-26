@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#057f7f</color>
     <color name="colorAccent">#bfbfbf</color>
     <color name="colorAccentDark">#7e7e7e</color>
+    <color name="colorSelected">#ff8b25</color>
     <!--<color name="colorAccentLight">#???????</color>-->
     <color name="colorPrimaryLight">#ffffff</color>
 

@@ -1,7 +1,7 @@
 package mad.dinodine;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+//import android.os.Parcel;
+//import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -16,26 +16,28 @@ public class Booking implements Serializable{
     Guest guest;
     int numOfPeople;
     Date date; //a java.util.date object that contains Date and time
-    //TODO make Table.java
-    // Table table;
+    Table table;
 
     public Booking(){
         this.bookingID = -1;
         this.guest = null;
         this.numOfPeople = -1;
         this.date = null;
+        this.table = new Table();
     }
-    public Booking(Guest guest, int NumOfPeople, long date){
+    public Booking(Guest guest, int NumOfPeople, long date, Table t){
         generateBookingId();
         this.guest = guest;
         this.numOfPeople = NumOfPeople;
         this.date = new Date(date);
+        this.table = t;
     }
-    public Booking(Guest guest, int NumOfPeople, Date date){
+    public Booking(Guest guest, int NumOfPeople, Date date, Table t){
         generateBookingId();
         this.guest = guest;
         this.numOfPeople = NumOfPeople;
         this.date = date;
+        this.table = t;
     }
     public Booking(Guest guest, int NumOfPeople, int day, int month, int year, int hour, int min){
         generateBookingId();
@@ -60,7 +62,7 @@ public class Booking implements Serializable{
 
     private void generateBookingId() {
         //TODO code to generate booking id num
-        if(bookingID == -1){}
+        //if(bookingID == -1){}
         bookingID = 0;
     }
 
@@ -106,6 +108,7 @@ public class Booking implements Serializable{
     public void setDate(Date date) {
         this.date = date;
     }
+    public void setDate(long date) {this.date = new Date(date);}
 
 
     @Override

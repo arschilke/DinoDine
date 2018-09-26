@@ -5,21 +5,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
 public class TimeSelectActivity extends AppCompatActivity {
     Button start[], finish[];
+    //CalendarView calView;
     TextView DateTV;
     ImageButton submitBtn;
-    Booking bookingNow;
+    Booking booking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_select);
+
+        //retrieve booking object.
+        Intent intent = getIntent();
+        booking = (Booking) intent.getSerializableExtra("booking");
+        Toast toast = Toast.makeText(getApplicationContext(), "booking: " + booking.toString(), (int) 0);
+        toast.show();
 
         //initialise arrays.
         start = new Button[9];

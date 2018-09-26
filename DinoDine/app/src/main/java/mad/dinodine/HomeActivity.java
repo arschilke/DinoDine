@@ -23,9 +23,9 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Starting the book table intent --> go to people screen
-               Intent create_Booking = new Intent(HomeActivity.this, PeopleSelectActivity.class);
-                Booking bookingNow = new Booking();
-                create_Booking.putExtra("bookingNow", bookingNow);
+               Intent create_Booking = new Intent(getApplicationContext(), PeopleSelectActivity.class); //getApplicationContext() swappedfor HomeActivity.this
+                //Booking bookingNow = new Booking();
+                //create_Booking.putExtra("bookingNow", bookingNow);
                 startActivity(create_Booking);
             }
         });
