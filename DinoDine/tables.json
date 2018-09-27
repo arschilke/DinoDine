@@ -1,0 +1,15 @@
+
+{
+	"minCapacity": 0,
+	"maxCapacity": 10,
+	"minMaxCapacity": 0,
+	"maxMaxCapacity": 14,
+	"tables":
+	[
+		{"id":"T001","capacity":6,"maxCapacity":8},
+		{"id":"T002","capacity":6,"maxCapacity":8},
+		{"id":"T003","capacity":8,"maxCapacity":10},
+		{"id":"T004","capacity":4,"maxCapacity":6},
+		{"id":"T005","capacity":10,"maxCapacity":12},
+	]
+}

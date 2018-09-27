@@ -83,11 +83,10 @@ public class PeopleSelectActivity extends AppCompatActivity {
                     num2.setBackground(getResources().getDrawable(R.drawable.roundedbutton));
                     num3.setBackground(getResources().getDrawable(R.drawable.roundedbutton));
                     numOfPpl = Integer.parseInt(parentView.getItemAtPosition(position).toString());
-                }
+            }
 
-
+            //Need to implement this as setOnItemSelectedListener is abstract.
             public void onNothingSelected(AdapterView<?> parentView) {
-                //? What triggers this? No idea.
             }
         });
 

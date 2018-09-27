@@ -21,6 +21,9 @@
         <activity android:name=".SelectDateActivity" />
         <activity android:name=".TimeSelectActivity" />
         <activity android:name=".DetailFormActivity" />
+        <activity android:name=".TableSelectActivity" />
+        <activity android:name=".BookingViewActivity" />
+        <activity android:name=".ListViewActivity" />
 
 
     </application>

@@ -22,7 +22,6 @@ import java.util.Date;
 
 public class TimeSelectActivity extends AppCompatActivity {
     Button start[], finish[];
-    //CalendarView calView;
     TextView DateTV;
     ImageButton submitBtn;
     Booking booking;
@@ -35,9 +34,14 @@ public class TimeSelectActivity extends AppCompatActivity {
         //retrieve booking object.
         Intent intent = getIntent();
         booking = (Booking) intent.getSerializableExtra("booking");
-        Toast toast = Toast.makeText(getApplicationContext(), "booking: " + booking.toString(), (int) 0);
+        Toast toast = Toast.makeText(getApplicationContext(), "booking: " + booking.toString(), (int) 1);
+        toast.show();
+        toast=Toast.makeText(getApplicationContext(),"dateString: "+booking.getDateString(),(int)1);
         toast.show();
 
+
+        DateTV = findViewById(R.id.DateText);
+        DateTV.setText(booking.getDateString());
         //initialise arrays.
         start = new Button[9];
         finish = new Button[3];
@@ -52,11 +56,17 @@ public class TimeSelectActivity extends AppCompatActivity {
             String btnID = "btn" + (x + 1);
             int idNum = getResources().getIdentifier(btnID, "id", getPackageName());
             start[x] = findViewById(idNum);
-            //TODO look up values for each btn; on click listener for each btn
+
+            //Set time as text value for buttons.
+            start[x].setText(booking.getTime());
+            //TODO make a time function or equivalent that goes to nearest half hour then add's 30 mins to each sequential button
+            //Will probably end up using pickers instead of buttons, just better from usabilty aspect, probably easier to code.
+
             start[x].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //TODO change background to signal selected and unselect others
+                    //
                     //TODO save value to variable
 
                 }
