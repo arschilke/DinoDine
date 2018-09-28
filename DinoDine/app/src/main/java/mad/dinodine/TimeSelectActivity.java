@@ -34,10 +34,8 @@ public class TimeSelectActivity extends AppCompatActivity {
         //retrieve booking object.
         Intent intent = getIntent();
         booking = (Booking) intent.getSerializableExtra("booking");
-        Toast toast = Toast.makeText(getApplicationContext(), "booking: " + booking.toString(), (int) 1);
-        toast.show();
-        toast=Toast.makeText(getApplicationContext(),"dateString: "+booking.getDateString(),(int)1);
-        toast.show();
+
+        //Toast toast=Toast.makeText(getApplicationContext(),"dateString: "+booking.getDateString(),(int)1);
 
 
         DateTV = findViewById(R.id.DateText);

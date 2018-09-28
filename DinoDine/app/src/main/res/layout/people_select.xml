@@ -61,7 +61,7 @@
                 android:layout_height="60dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:text="3" /><!--/roundedbutton-->
+                android:text="3" />
 
             <Spinner
                 android:id="@+id/spinner4plus"
@@ -69,7 +69,9 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton_active" />
-                <!--android:background="@android:drawable/btn_dropdown"/>-->
+                <!--
+                android:background="@android:drawable/btn_dropdown"/>
+                -->
 
         </LinearLayout>
 

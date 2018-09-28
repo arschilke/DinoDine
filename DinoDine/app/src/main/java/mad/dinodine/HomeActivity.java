@@ -13,6 +13,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //this.getSupportActionBar().setDisplayShowTitleEnabled(false); Hides the DinoDine title, but still has green bar at top. start with empty or fullscreen activity?
         setContentView(R.layout.home_activity);
 
         bookNow = findViewById(R.id.bookTable);
