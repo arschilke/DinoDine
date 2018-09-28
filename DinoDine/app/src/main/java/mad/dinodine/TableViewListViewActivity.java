@@ -22,7 +22,7 @@ public class TableViewListViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent create_Booking = new Intent(TableViewListViewActivity.this, BookingViewActivity.class);
+                Intent create_Booking = new Intent(TableViewListViewActivity.this, ListViewActivity.class);
                 startActivity(create_Booking);
             }
         });
