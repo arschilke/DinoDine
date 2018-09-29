@@ -1,3 +1,5 @@
+//CTRL-A to select all, then CTRL+SHIFT+/ to uncomment whole file in android studio
+/*
 package mad.dinodine;
 
 import android.support.v7.app.AppCompatActivity;
@@ -29,4 +31,4 @@ import android.widget.ImageButton;
 
         }
 
-    }
+    }*/
