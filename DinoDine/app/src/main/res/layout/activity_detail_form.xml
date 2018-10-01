@@ -28,12 +28,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Title"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/Title">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -46,8 +45,9 @@
                     android:id="@+id/article"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="12"
                     android:entries="@array/titleName"
+                    android:padding="12dp"
                     tools:layout_editor_absoluteX="42dp"
                     tools:layout_editor_absoluteY="318dp" />
 
@@ -55,7 +55,7 @@
                     android:id="@+id/firstName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:ems="10"
                     android:hint="@string/first_name"
                     android:inputType="textPersonName"
@@ -112,12 +112,18 @@
             <Spinner
                 android:id="@+id/dietRestrict"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/diet"
+                android:padding="12dp"
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/submitBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:background="@drawable/roundedbutton"
                 android:text="@string/submit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"

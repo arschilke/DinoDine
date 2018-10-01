@@ -35,9 +35,9 @@ public class PeopleSelectActivity extends AppCompatActivity {
         spinner4plus = findViewById(R.id.spinner4plus);
 
         //Pulls values from strings.xml [string-array: peopleNum) for number of people.
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.peopleNum, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner4plus.setAdapter(adapter);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.peopleNum, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spinner4plus.setAdapter(adapter);
 
         num1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,23 +104,5 @@ public class PeopleSelectActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //Use this code in the on click to get the Booking obj being created
-
-        /* Intent intent = getIntent();
-            Booking bookingNow = (Booking) intent.getSerializableExtra("bookingNow");
-          bookingNow.setNumOfPeople(num);
-         */
     }
-
-    //Dont think I need the below code...
-/*    public void onStart(Bundle savedInstanceBundle){
-        numOfPpl = 0;
-        //numOfPpl = Integer.parseInt(spinner4plus.getItemAtPosition(0).toString());
-        spinner4plus.setBackground(getResources().getDrawable(R.drawable.roundedbutton));
-        num1.setBackground(getResources().getDrawable(R.drawable.roundedbutton));
-        num2.setBackground(getResources().getDrawable(R.drawable.roundedbutton));
-        num3.setBackground(getResources().getDrawable(R.drawable.roundedbutton));
-        confirmPeople.setEnabled(false);
-    }*/
 }

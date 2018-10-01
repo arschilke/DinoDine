@@ -25,25 +25,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="@string/select_a_time_for"
+                android:layout_weight=".8"
+                android:text="Select times for 99/99/9999"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                 android:textColor="@color/colorAccentDark"
+                android:textSize="40sp"
                 app:layout_constraintEnd_toStartOf="@+id/DateText"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/DateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="dd/mm/yyyy"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-                android:textColor="@color/colorAccentDark"
-                app:layout_constraintStart_toEndOf="@+id/instructions"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
@@ -65,9 +55,11 @@
 
         <TextView
             android:id="@+id/StartText"
+            style="@android:style/Widget.Button.Inset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/start"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
@@ -75,9 +67,11 @@
 
         <TextView
             android:id="@+id/FinishText"
+            style="@android:style/Widget.Button.Inset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/finish"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"

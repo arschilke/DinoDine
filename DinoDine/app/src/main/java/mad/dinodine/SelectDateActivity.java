@@ -54,7 +54,7 @@ public class SelectDateActivity extends AppCompatActivity {
                 //set booking date.
                 booking.setDate(dateBooked);
 
-                Toast toast = Toast.makeText(getApplicationContext(), "booking.getDateString(): " + booking.getDateString() + "\nbooking.getTimeString(): " + booking.getTime(), (int) 0);
+                Toast toast = Toast.makeText(getApplicationContext(), "booking.getDateString(): " + booking.getDateString() + "\nbooking.getTimeString(): " + booking.getTime(), (int) 1);
                 toast.show();
             }
         });
@@ -62,9 +62,7 @@ public class SelectDateActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(),"date: " + new Date(dateBooked), (int) 0);
-                toast.show();
-                Intent intent = new Intent(getApplicationContext(), TimeSelectActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TimeSelectActivity2.class);
                 intent.putExtra("booking", booking);
                 startActivity(intent);
             }
