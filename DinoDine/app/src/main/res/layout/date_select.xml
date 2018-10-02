@@ -17,7 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <CalendarView
                 android:id="@+id/calendarView"
@@ -29,16 +29,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/confirmDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Submit"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                tools:layout_editor_absoluteX="46dp"
-                tools:layout_editor_absoluteY="517dp" />
         </LinearLayout>
     </ScrollView>
+
+    <ImageButton
+        android:id="@+id/confirmDate"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="100dp"
+        android:layout_weight="1"
+        android:background="@drawable/checkmark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

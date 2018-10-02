@@ -21,10 +21,10 @@ public class DetailFormActivity extends AppCompatActivity {
         intent = getIntent();
 
 
-        article = findViewById(R.id.article);
-        DietRestrict = findViewById(R.id.dietRestrict);
+       // article = findViewById(R.id.article);
+       // DietRestrict = findViewById(R.id.dietRestrict);
 
-        phoneExt = findViewById(R.id.phoneExt);
+       // phoneExt = findViewById(R.id.phoneExt);
         fName = findViewById(R.id.firstName);
         lName = findViewById(R.id.lastName);
         phoneNum = findViewById(R.id.phone);

@@ -1,38 +1,38 @@
 package mad.dinodine;
 
 public class Guest {
-    String firstName, lastName, phoneNum, phoneExt, titleName, email, diet;
+    String firstName, lastName, phoneNum, email; //phoneExt, titleName, diet;
     int guestID;
 
     public Guest() {
         this.firstName = "";
         this.lastName = "";
-        this.phoneExt = "";
+        //this.phoneExt = "";
         this.phoneNum = "";
-        this.titleName = "";
+        //this.titleName = "";
         this.email = "";
-        this.diet = "";
+        //this.diet = "";
         this.guestID = -1;
     }
 
     public Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email, String diet){
         this.firstName = fname;
         this.lastName = lName;
-        this.phoneExt = phoneExt;
+        //this.phoneExt = phoneExt;
         this.phoneNum = phoneNum;
-        this.titleName = title;
+        //this.titleName = title;
         this.email = email;
-        this.diet = diet;
+        //this.diet = diet;
         generateGuestID();
     }
     public Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email,String diet, int guestID){
         this.firstName = fname;
         this.lastName = lName;
-        this.phoneExt = phoneExt;
+        //this.phoneExt = phoneExt;
         this.phoneNum = phoneNum;
-        this.titleName = title;
+        //this.titleName = title;
         this.email = email;
-        this.diet = diet;
+        //this.diet = diet;
         this.guestID = guestID;
     }
 
@@ -86,7 +86,7 @@ public class Guest {
         this.phoneNum = phoneNum;
     }
 
-    public String getPhoneExt() {
+    /*public String getPhoneExt() {
         return phoneExt;
     }
 
@@ -101,6 +101,7 @@ public class Guest {
     public void setTitleName(String titleName) {
         this.titleName = titleName;
     }
+    */
 
     public String getEmail() {
         return email;
@@ -115,11 +116,11 @@ public class Guest {
         return "Guest{" +
                 " firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +/*
                 ", phoneExt='" + phoneExt + '\'' +
-                ", titleName='" + titleName + '\'' +
-                ", email='" + email + '\'' +
-                ", diet='" + diet + '\'' +
+                ", titleName='" + titleName + '\'' +*/
+                ", email='" + email + '\'' +/*
+                ", diet='" + diet + '\'' +*/
                 ", guestID=" + guestID +
                 '}';
     }

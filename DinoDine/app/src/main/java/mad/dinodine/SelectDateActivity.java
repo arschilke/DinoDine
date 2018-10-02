@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class SelectDateActivity extends AppCompatActivity {
     long dateBooked = new Date().getTime();
 
     private EditText inputDate;
-    private Button confirm;
+    ImageButton confirm;
     CalendarView calView;
     Booking booking = null;
     long randomInt;

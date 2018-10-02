@@ -40,7 +40,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <!--TODO fix text size of spinners -->
+                <!--\
                 <Spinner
                     android:id="@+id/article"
                     android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                     android:entries="@array/titleName"
                     android:padding="12dp"
                     tools:layout_editor_absoluteX="42dp"
-                    tools:layout_editor_absoluteY="318dp" />
+                    tools:layout_editor_absoluteY="318dp" />-->
 
                 <EditText
                     android:id="@+id/firstName"
@@ -79,7 +79,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <EditText
+               <!-- <EditText
                     android:id="@+id/phoneExt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                     android:ems="10"
                     android:hint="+61"
                     android:inputType="textPersonName"
-                    android:textSize="24sp" />
+                    android:textSize="24sp" />-->
 
                 <EditText
                     android:id="@+id/phone"
@@ -109,7 +109,7 @@
                 android:inputType="textEmailAddress"
                 android:textSize="24sp" />
 
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/dietRestrict"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                 android:dropDownWidth="match_parent"
                 android:entries="@array/diet"
                 android:padding="12dp"
-                android:textSize="24sp" />
+                android:textSize="24sp" />-->
 
             <Button
                 android:id="@+id/submitBtn"

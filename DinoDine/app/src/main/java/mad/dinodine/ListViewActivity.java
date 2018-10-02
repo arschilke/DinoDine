@@ -29,6 +29,7 @@ public class ListViewActivity extends AppCompatActivity {
         searchV = findViewById(R.id.search);
         resultL = findViewById(R.id.results);
 
+
         ArrayList<String> arrayBookings = new ArrayList<>();
         arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
 
