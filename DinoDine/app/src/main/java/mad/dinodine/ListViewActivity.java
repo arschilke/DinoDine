@@ -17,16 +17,17 @@ import java.util.Arrays;
 
 public class ListViewActivity extends AppCompatActivity {
 
-    ListView search_bookings;
+    SearchView searchV = null;
+    ListView resultL = null;
     ArrayAdapter<String> adapter;
 
-   //Commented out because revamping... EditText searchBox = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
 
-        search_bookings =  (ListView) findViewById(R.id.search);
+        searchV = findViewById(R.id.search);
+        resultL = findViewById(R.id.results);
 
         ArrayList<String> arrayBookings = new ArrayList<>();
         arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
@@ -37,29 +38,9 @@ public class ListViewActivity extends AppCompatActivity {
                 arrayBookings
         );
 
-        search_bookings.setAdapter(adapter);
+        resultL.setAdapter(adapter);
 
-        //Below three lines just prevent focus going to search box in order to stop keyboard popping up.
-        /**findViewById(R.id.textView5).setFocusable(true);
-        findViewById(R.id.textView5).setFocusableInTouchMode(true);
-        findViewById(R.id.textView5).requestFocus();
-
-
-        /**searchBox.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-            }
-        });**/
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_bookings, menu);
-        MenuItem item = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView)item.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchV.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
@@ -71,9 +52,27 @@ public class ListViewActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_bookings, menu);
+        MenuItem item = menu.findItem(R.id.results);
+        //SearchView searchView = (SearchView)item.getActionView();
+
+/*        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }*/
         return super.onCreateOptionsMenu(menu);
-
     }
 
 
