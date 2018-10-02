@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:screenOrientation="landscape">
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity" android:screenOrientation="landscape">
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN" />
 
                     <category android:name="android.intent.category.LAUNCHER" />
                 </intent-filter>
             </activity>
-        <activity android:name=".TableViewListViewActivity" />
-        <activity android:name=".PeopleSelectActivity" />
-        <activity android:name=".SelectDateActivity" />
-        <activity android:name=".TimeSelectActivity" />
-        <!----><activity android:name=".TimeSelectActivity2" />
-        <activity android:name=".DetailFormActivity" />
-        <activity android:name=".TableSelectActivity" />
-        <activity android:name=".BookingViewActivity" />
-        <activity android:name=".ListViewActivity" />
+        <activity android:name=".TableViewListViewActivity" android:screenOrientation="landscape" />
+        <activity android:name=".PeopleSelectActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".SelectDateActivity" android:screenOrientation="landscape"/>
+        <!---<activity android:name=".TimeSelectActivity" android:screenOrientation="landscape"/>-->
+        <activity android:name=".TimeSelectActivity2" android:screenOrientation="landscape"/>
+        <activity android:name=".DetailFormActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".TableSelectActivity" android:screenOrientation="landscape" />
+        <activity android:name=".BookingViewActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".ListViewActivity" android:screenOrientation="landscape"/>
 
 
     </application>
