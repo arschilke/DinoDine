@@ -6,14 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.TimePicker;
 
 public class TimeSelectActivity2 extends AppCompatActivity {
 
     TextView instr = null;
     ImageButton submit = null;
-    TextView start = null;
-    TextView finish = null;
+    TimePicker start, finish;
 
     Booking booking = null;
 
@@ -26,8 +25,8 @@ public class TimeSelectActivity2 extends AppCompatActivity {
 
         instr = findViewById(R.id.instructions);
         submit = findViewById(R.id.submitTimeBtn);
-        start = findViewById(R.id.StartText);
-        finish = findViewById(R.id.FinishText);
+        start = findViewById(R.id.StartWidget);
+        finish = findViewById(R.id.FinishWidget);
 
         instr.setText("Select times for " + booking.getDateString());
         //start.setText(booking.getTime());
@@ -48,11 +47,12 @@ public class TimeSelectActivity2 extends AppCompatActivity {
         }
         if(h < 10){hrs = "0" + h;}else{hrs = ""+h;}
 
-        start.setText(hrs+":"+mins);
+        //start.setText(hrs+":"+mins);
+        //start.
 
         if(++h < 10){hrs = "0" + h;}else{hrs = ""+h;}
 
-        finish.setText(hrs+":"+mins);
+       // finish.setText(hrs+":"+mins);
 
         start.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/StartText"
+        android:id="@+id/StartWidget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/instructions" />
 
     <TextView
-        android:id="@+id/FinishText"
+        android:id="@+id/FinishWidget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
@@ -67,7 +67,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/checkmark"
-        app:layout_constraintBottom_toTopOf="@+id/FinishText"
+        app:layout_constraintBottom_toTopOf="@+id/FinishWidget"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/DateText"
         app:layout_constraintTop_toTopOf="parent" />
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StartText">
+        app:layout_constraintTop_toBottomOf="@+id/StartWidget">
 
 
         <Button
@@ -242,7 +242,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StartText">
+        app:layout_constraintTop_toBottomOf="@+id/StartWidget">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
