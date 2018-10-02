@@ -3,10 +3,12 @@ package mad.dinodine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class PeopleSelectActivity2 extends AppCompatActivity {
 
@@ -22,32 +24,26 @@ public class PeopleSelectActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.people_select2);
         spinner = findViewById(R.id.spinner);
+        confirmPeople = findViewById(R.id.confirmPeople);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                //String plusSign = "\u002B"; // unicode, when I had a plus as the top entry.
-
-                spinner.setBackground(getResources().getDrawable(R.drawable.roundedbutton_active));
-                numOfPpl = Integer.parseInt(parentView.getItemAtPosition(position).toString());
-            }
-
-            //Need to implement this as setOnItemSelectedListener is abstract.
-            public void onNothingSelected(AdapterView<?> parentView) {
-            }
-        });
 
         confirmPeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create booking and store numOfPpl in it
-                Booking bookRecord = new Booking();
-                bookRecord.setNumOfPeople(numOfPpl);
+                numOfPpl = Integer.parseInt(spinner.getSelectedItem().toString());
+                if(numOfPpl <= 0){
+                    Toast.makeText(getApplicationContext(), "Please select a number", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    //Create booking and store numOfPpl in it
+                    Booking bookRecord = new Booking();
+                    bookRecord.setNumOfPeople(numOfPpl);
 
-                //store booking object along with intent and pass onto next activity
-                Intent intent = new Intent(getApplicationContext(), SelectDateActivity.class);
-                intent.putExtra("booking", bookRecord);
-                startActivity(intent);
+                    //store booking object along with intent and pass onto next activity
+                    Intent intent = new Intent(getApplicationContext(), SelectDateActivity.class);
+                    intent.putExtra("booking", bookRecord);
+                    startActivity(intent);
+                }
             }
         });
     }
