@@ -1,5 +1,7 @@
 //CTRL-A to select all, then CTRL+SHIFT+/ to uncomment whole file in android studio
 /*
+
+//renaming this file as there is already a Calendar class in the API
 package mad.dinodine;
 
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-    public class Calendar extends AppCompatActivity {
+    public class CalendarActivity extends AppCompatActivity {
 
         ImageButton checkButton;
 
