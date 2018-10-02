@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity {
         bookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent create_Booking = new Intent(getApplicationContext(), PeopleSelectActivity.class);
+               Intent create_Booking = new Intent(getApplicationContext(), PeopleSelectActivity2.class);
                startActivity(create_Booking);
             }
         });
