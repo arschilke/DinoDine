@@ -7,12 +7,16 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.sql.Time;
 
 public class TimeSelectActivity2 extends AppCompatActivity {
 
     TextView instr = null;
     ImageButton submit = null;
     TimePicker start, finish;
+    final int DEFAULT_LENGTH = 1; //the default length of a reservation
 
     Booking booking = null;
 
@@ -32,49 +36,37 @@ public class TimeSelectActivity2 extends AppCompatActivity {
         //start.setText(booking.getTime());
         //finish.setText(booking.getTime());
 
-        String hrs = booking.getTime().substring(0,2);
-        String mins = booking.getTime().substring(3);
-        int h = Integer.parseInt(hrs);
-        int m = Integer.parseInt(mins);
+        int h = Integer.parseInt(booking.getTime().substring(0,2));
+        int m = Integer.parseInt(booking.getTime().substring(3));
 
-        if((m-30) < 0)
-        {
-            mins = "30";
-        }
-        else
-        {
-            mins = "00"; h += 1;
-        }
-        if(h < 10){hrs = "0" + h;}else{hrs = ""+h;}
+        if((m-30) < 0) { m=30; } else { m = 0; h += 1; }
 
-        //start.setText(hrs+":"+mins);
-        //start.
+        start.setHour(h);
+        start.setMinute(m);
 
-        if(++h < 10){hrs = "0" + h;}else{hrs = ""+h;}
 
-       // finish.setText(hrs+":"+mins);
+        finish.setMinute(m);
+        finish.setHour(h+DEFAULT_LENGTH);
 
-        start.setOnClickListener(new View.OnClickListener(){
+        start.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
-            public void onClick(View v){
-                //start time picker
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                finish.setHour(hourOfDay+DEFAULT_LENGTH);
+                finish.setMinute(minute);
             }
         });
-        finish.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //start time picker
-            }
-        });
+
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), DetailFormActivity.class);
+                booking.setStartTime(new Time(start.getHour(),start.getMinute(),0)); //change obj to simple int?
+                booking.setEndTime(new Time(finish.getHour(),finish.getMinute(),0));
+
                 intent.putExtra("booking", booking);
-                //if(times are set)
+                Toast.makeText(getApplicationContext(),"Start: "+ start.getHour()+":"+start.getMinute()+"End: "+ finish.getHour()+":"+finish.getMinute(), Toast.LENGTH_SHORT).show();
                 startActivity(intent);
-                //else
-                //toastmsg saying to select times.
+
             }
         });
     }

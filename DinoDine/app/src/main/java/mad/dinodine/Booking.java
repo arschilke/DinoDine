@@ -123,6 +123,8 @@ public class Booking implements Serializable{
     }
     public void setDate(long date) {this.date = new Date(date);}
     public void setTable(Table t) {table = t;}
+    public void setStartTime(Time startTime) { this.startTime = startTime; }
+    public void setEndTime(Time endTime) { this.endTime = endTime; }
 
     @Override
     public String toString() {
