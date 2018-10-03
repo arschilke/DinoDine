@@ -74,6 +74,7 @@
 
             <TimePicker
                 android:id="@+id/StartWidget"
+                style="@style/myTimePickerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -103,6 +104,7 @@
             <TimePicker
                 android:id="@+id/FinishWidget"
 
+                style="@style/myTimePickerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

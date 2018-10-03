@@ -8,5 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!--<item name="colorPrimaryLight">@color/colorPrimaryLight</item>-->
     </style>
-
+    <style name="myTimePickerStyle" parent="@android:style/Widget.Material.Light.TimePicker">
+        <item name="android:numbersTextColor">@color/colorPrimaryDark</item>
+        <item name="android:numbersBackgroundColor">@color/colorAccentLight</item>
+        <item name="android:numbersSelectorColor">@color/colorSelected</item>
+        <item name="android:headerBackground">@color/colorPrimary</item>
+    </style>
 </resources>

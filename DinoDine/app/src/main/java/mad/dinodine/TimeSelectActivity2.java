@@ -39,7 +39,7 @@ public class TimeSelectActivity2 extends AppCompatActivity {
         int h = Integer.parseInt(booking.getTime().substring(0,2));
         int m = Integer.parseInt(booking.getTime().substring(3));
 
-        if((m-30) < 0) { m=30; } else { m = 0; h += 1; }
+        if((m-30) < 0) { m=30; } else { m = 0; h += 1; } //round min to nearest half hour
 
         start.setHour(h);
         start.setMinute(m);

@@ -3,10 +3,10 @@
     <!-- OG teal and Grey-->
     <color name="colorPrimary">#2e9797</color>
     <color name="colorPrimaryDark">#057f7f</color>
+    <color name="colorAccentLight">#efefef</color>
     <color name="colorAccent">#bfbfbf</color>
     <color name="colorAccentDark">#7e7e7e</color>
     <color name="colorSelected">#bce784</color>
-    <!--<color name="colorAccentLight">#???????</color>-->
     <color name="colorPrimaryLight">#ffffff</color>
 
 
