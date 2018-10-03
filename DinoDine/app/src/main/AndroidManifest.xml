@@ -18,11 +18,9 @@
                 </intent-filter>
             </activity>
         <activity android:name=".TableViewListViewActivity" android:screenOrientation="landscape" />
-        <!--<activity android:name=".PeopleSelectActivity" android:screenOrientation="landscape"/>-->
-        <activity android:name=".PeopleSelectActivity2" android:screenOrientation="landscape"/>
+        <activity android:name=".PeopleSelectActivity" android:screenOrientation="landscape"/>
         <activity android:name=".SelectDateActivity" android:screenOrientation="landscape"/>
-        <!---<activity android:name=".TimeSelectActivity" android:screenOrientation="landscape"/>-->
-        <activity android:name=".TimeSelectActivity2" android:screenOrientation="landscape"/>
+        <activity android:name=".TimeSelectActivity" android:screenOrientation="landscape"/>
         <activity android:name=".DetailFormActivity" android:screenOrientation="landscape"/>
         <activity android:name=".TableSelectActivity" android:screenOrientation="landscape" />
         <activity android:name=".BookingViewActivity" android:screenOrientation="landscape"/>

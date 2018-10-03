@@ -1,98 +1,72 @@
 package mad.dinodine;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.util.Date;
-
-
-/*
-****
-****
-****  Use date pickers instead of a button interface?
-****
- */
+import java.sql.Time;
 
 public class TimeSelectActivity extends AppCompatActivity {
-    Button start[], finish[];
-    TextView DateTV;
-    ImageButton submitBtn;
-    Booking booking;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    TextView instr = null;
+    ImageButton submit = null;
+    TimePicker start, finish;
+    final int DEFAULT_LENGTH = 1; //the default length of a reservation
+
+    Booking booking = null;
+
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_select);
 
-        //retrieve booking object.
         Intent intent = getIntent();
         booking = (Booking) intent.getSerializableExtra("booking");
 
-        //Toast toast=Toast.makeText(getApplicationContext(),"dateString: "+booking.getDateString(),(int)1);
+        instr = findViewById(R.id.instructions);
+        submit = findViewById(R.id.submitTimeBtn);
+        start = findViewById(R.id.StartWidget);
+        finish = findViewById(R.id.FinishWidget);
+
+        instr.setText("Select times for " + booking.getDateString());
+        //start.setText(booking.getTime());
+        //finish.setText(booking.getTime());
+
+        int h = Integer.parseInt(booking.getTime().substring(0,2));
+        int m = Integer.parseInt(booking.getTime().substring(3));
+
+        if((m-30) < 0) { m=30; } else { m = 0; h += 1; } //round min to nearest half hour
+
+        start.setHour(h);
+        start.setMinute(m);
 
 
-        DateTV = findViewById(R.id.DateText);
-        DateTV.setText(booking.getDateString());
-        //initialise arrays.
-        start = new Button[9];
-        finish = new Button[3];
-        //Intent intent = getIntent();
-        //bookingNow = (Booking) intent.getSerializableExtra("bookingNow");
+        finish.setMinute(m);
+        finish.setHour(h+DEFAULT_LENGTH);
 
-        //TextView DateTV = findViewById(R.id.DateText);
-        //DateTV.setText(bookingNow.getDateString());
-
-        //array for start btns
-        for(int x = 0; x < 9; x++){
-            String btnID = "btn" + (x + 1);
-            int idNum = getResources().getIdentifier(btnID, "id", getPackageName());
-            start[x] = findViewById(idNum);
-
-            //Set time as text value for buttons.
-            start[x].setText(booking.getTime());
-            //TODO make a time function or equivalent that goes to nearest half hour then add's 30 mins to each sequential button
-            //Will probably end up using pickers instead of buttons, just better from usabilty aspect, probably easier to code.
-
-            start[x].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO change background to signal selected and unselect others
-                    //
-                    //TODO save value to variable
-
-                }
-            });
-        }
-        //array for finish btns
-        for(int x = 0; x < 3; x++){
-            String btnID = "FBtn" + (x + 1);
-            int idNum = getResources().getIdentifier(btnID, "id", getPackageName());
-            finish[x] = findViewById(idNum);
-            //TODO look up values for each btn; on click listener for each btn
-            finish[x].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO auto select start + default setting
-                    //TODO change background to signal selected and unselect others
-                    //TODO save value to variable (ask how storing in DB)
-
-                }
-            });
-        }
-
-        submitBtn = findViewById(R.id.submitTimeBtn);
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        start.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
-            public void onClick(View v) {
-               //todo get selected btns value, convert to Date OBJ then setDate in Booking
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                finish.setHour(hourOfDay+DEFAULT_LENGTH);
+                finish.setMinute(minute);
+            }
+        });
 
+        submit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), DetailFormActivity.class);
+                booking.setStartTime(new Time(start.getHour(),start.getMinute(),0)); //change obj to simple int?
+                booking.setEndTime(new Time(finish.getHour(),finish.getMinute(),0));
+
+                intent.putExtra("booking", booking);
+                //Toast.makeText(getApplicationContext(),"Start: "+ start.getHour()+":"+start.getMinute()+"End: "+ finish.getHour()+":"+finish.getMinute(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Start: "+ booking.getStartTime()+"  End: "+ booking.getEndTime(), Toast.LENGTH_SHORT).show();
+                startActivity(intent);
 
             }
         });

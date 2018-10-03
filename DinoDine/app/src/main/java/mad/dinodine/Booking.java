@@ -104,6 +104,9 @@ public class Booking implements Serializable{
         }
         return result;
     }
+    public Time getStartTime(){return startTime;}
+    public Time getEndTime() {return endTime;}
+
     public Table getTable() {
         return table;
     }

@@ -15,7 +15,7 @@ public class Guest {
         this.guestID = -1;
     }
 
-    public Guest(String fname, String lName, String phoneNum, String phoneExt, String title, String email, String diet){
+    public Guest(String fname, String lName, String phoneNum, String email){
         this.firstName = fname;
         this.lastName = lName;
         //this.phoneExt = phoneExt;

@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<!--
+PlaceHolder for calendar layout file.
+-->
+
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--
-    PlaceHolder for calendar layout file.
-    -->
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:dateTextAppearance="@style/CalendarViewDateCustomText"
+            android:weekDayTextAppearance="@style/CalendarViewWeekCustomText"
+            android:layout_width="450dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/confirmDate"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/confirmDate"
-                app:layout_constraintDimensionRatio="w,1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+</ScrollView>
 
-        </LinearLayout>
-    </ScrollView>
-
-    <ImageButton
-        android:id="@+id/confirmDate"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="100dp"
-        android:layout_weight="1"
-        android:background="@drawable/checkmark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+<ImageButton
+    android:id="@+id/confirmDate"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_marginBottom="50dp"
+    android:layout_marginEnd="100dp"
+    android:layout_weight="1"
+    android:background="@drawable/checkmark"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
