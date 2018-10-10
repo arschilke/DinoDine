@@ -1,5 +1,6 @@
 package mad.dinodine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -7,16 +8,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ListViewActivity extends AppCompatActivity {
 
+
+    private AppRoomDB mDb;
+
+    Button z = null;
+
+    LinearLayout ll = null;
     SearchView searchV = null;
     ListView resultL = null;
     ArrayAdapter<String> adapter;
@@ -26,8 +36,22 @@ public class ListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
 
+        mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
+
         searchV = findViewById(R.id.search);
         resultL = findViewById(R.id.results);
+        ll = findViewById(R.id.list_view_ll); //to test adding bookings dynamically.
+
+        z = findViewById(R.id.cb);
+        z.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(),Test.class);
+                startActivity(intent);
+            }
+
+        });
+
 
 
         ArrayList<String> arrayBookings = new ArrayList<>();

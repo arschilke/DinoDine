@@ -1,0 +1,20 @@
+
+{
+  "minCapacity": 0,
+  "maxCapacity": 8,
+  "minMaxCapacity": 0,
+  "maxMaxCapacity": 10,
+  "tables":[
+    {"id":"T01","capacity":6,"maxCapacity":8,"canJoin":["T02","T04"]},
+    {"id":"T02","capacity":6,"maxCapacity":8,"canJoin":["T01","T03"]},
+    {"id":"T03","capacity":6,"maxCapacity":8,"canJoin":["T02","T05"]},
+    {"id":"T04","capacity":8,"maxCapacity":10,"canJoin":["T01","T05"]},
+    {"id":"T05","capacity":8,"maxCapacity":10,"canJoin":["T03","T04"]},
+    {"id":"T06","capacity":8,"maxCapacity":10,"canJoin":["T10"]},
+    {"id":"T07","capacity":4,"maxCapacity":6,"canJoin":["T08"]},
+    {"id":"T08","capacity":4,"maxCapacity":6,"canJoin":["T07","T09"]},
+    {"id":"T09","capacity":4,"maxCapacity":6,"canJoin":["T08","T10"]},
+    {"id":"T10","capacity":4,"maxCapacity":6,"canJoin":["T06","T09"]},
+    {"id":"T99","capacity":2,"maxCapacity":10,"canJoin":[]}
+  ]
+}

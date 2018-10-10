@@ -25,7 +25,13 @@
         <activity android:name=".TableSelectActivity" android:screenOrientation="landscape" />
         <activity android:name=".BookingViewActivity" android:screenOrientation="landscape"/>
         <activity android:name=".ListViewActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".Test">
+            <!--<intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>-->
+        </activity>
 
     </application>
 

@@ -19,6 +19,12 @@ android {
 }
 
 dependencies {
+    //Allows you to debug db's in a browser; however I don't think it's working, possibly as room is using inMemoryDatabaseBuilder, and not databaseBuilder
+    //So the database only exists in memory while the app is running? and will delete itself afterwards.
+
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
+    debugApi 'com.amitshekhar.android:debug-db:1.0.4'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
@@ -26,4 +32,22 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    def room_version = "1.1.1"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    // Test helpers
+    testImplementation "android.arch.persistence.room:testing:$room_version"
+    /* -- min sdk 24, so won't be using this...
+                            def lifecycle_version = "1.1.1"
+                            // ViewModel and LiveData
+                            implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+                            //     Support library depends on this lightweight import
+                            implementation "android.arch.lifecycle:runtime:$lifecycle_version"
+                            //annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+                            // alternately - if using Java8, use the following instead of compiler
+                            implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
+                            // optional - Test helpers for LiveData
+                            testImplementation "android.arch.core:core-testing:$lifecycle_version"
+                            */
 }

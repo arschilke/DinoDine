@@ -1,45 +1,69 @@
 package mad.dinodine;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
+@Entity
 public class Table implements Serializable {
     //min max 'globals' for table capacity (Should max up with spinner in select people)
-    static final int capMIN = 0;
-    static final int capMAX = 10;
-    static final int mCapMIN = 0;
-    static final int mCapMAX = 14;
+    private static final int capMIN = 0;
+    private static final int capMAX = 10;
+    private static final int mCapMIN = 0;
+    private static final int mCapMAX = 14;
 
-    static int _TID = 0;
-    int tableID;
-    int capacity;
-    int maxCapacity;
-    ArrayList<String> neighbours; //hold tableID of other tables that i can be joined with
+    @PrimaryKey
+    @ColumnInfo(name = "table_id")
+    @NonNull
+    private String tableID = "";
+    private int capacity;
+    @ColumnInfo(name = "max_capacity")
+    private int maxCapacity;
+    @Ignore
+    private ArrayList<String> neighbours; //hold tableID of other tables that i can be joined with
 
     //Constructors - add tables in via json file? Let sql handle ID parameter, or have them set in something like a json file
+    @Ignore
     public Table() {
-        tableID = _TID++;
+        tableID = UUID.randomUUID().toString();
         capacity = 0;
         maxCapacity = 0;
         neighbours = new ArrayList<String>();
     }
 
-    public Table(int cap, int max) {
-        tableID = _TID++;
+    @Ignore
+    public Table(int cap, int max, ArrayList<String> n) {
+        tableID = UUID.randomUUID().toString();
         capacity = cap;
         maxCapacity = max;
-        neighbours = new ArrayList<String>();
+        //neighbours = new ArrayList<String>();
+        neighbours = n;
     }
-
-    public Table(int id, int cap, int max) {
-        tableID = id;
-        capacity = cap;
-        maxCapacity = max; //or do we set maxCap to be capacity + a constant. eg tables can always have at least 2 chairs added..
-        neighbours = new ArrayList<String>();
+    //USING THIS ONE FOR ROOM LIBRARY
+    public Table(String tableID, int capacity, int maxCapacity) {
+        if(tableID.equals("")){tableID = UUID.randomUUID().toString();}
+        else{this.tableID = tableID;}
+        this.capacity = capacity;
+        this.maxCapacity = maxCapacity;
+        this.neighbours = new ArrayList<String>();
+    }
+    @Ignore
+    public Table(String tableID, int capacity, int maxCapacity, ArrayList<String> neighbours) {
+        this.tableID = tableID;
+        this.capacity = capacity;
+        this.maxCapacity = maxCapacity; //or do we set maxCap to be capacity + a constant. eg tables can always have at least 2 chairs added..
+        //neighbours = new ArrayList<String>();
+        this.neighbours = neighbours;
     }
 
     //Getters
-    public int getTableID() {
+    public String getTableID() {
         return tableID;
     }
 
@@ -74,6 +98,6 @@ public class Table implements Serializable {
 
     //toString/display methods
     public String toString() {
-        return "Table[ tableID: " + tableID + ", capacity: " + capacity + ", maxCapacity: " + maxCapacity + " ]";
+        return "Table[ tableID:" + tableID + ", capacity:" + capacity + ", maxCapacity:" + maxCapacity + ", neighbours:" +neighbours+ " ]";
     }
 }

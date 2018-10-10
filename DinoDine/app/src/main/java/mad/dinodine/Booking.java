@@ -1,48 +1,70 @@
 package mad.dinodine;
+//End up using this instead?? Storing dates/times is a pain.
+//https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html
 
 //import android.os.Parcel;
 //import android.os.Parcelable;
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.Relation;
+import android.arch.persistence.room.TypeConverters;
+import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.UUID;
 
-
+//Can't have foreign key, and an object.. Foreign key would work if I was only storing the guestID, which I'm not.
+@Entity(foreignKeys = @ForeignKey(entity = Guest.class, parentColumns = "guestID", childColumns = "guest"),
+        indices = @Index("guest"))
+@TypeConverters({Converters.class})
 public class Booking implements Serializable{
+    //guest key - foreign key index..
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "booking_id")
+    private String bookingID="";
+    private int numOfPeople;
+    private Date date;
+    private Time startTime;
+    private Time endTime;
+    private String guest;
 
-    int bookingID;
-    int numOfPeople;
-    Guest guest;
-    Date date;
-    Time startTime;
-    Time endTime; //use start and endTime or just start with duration? pros,cons?
-    double duration; //1.0-1.5-2.0 enum? short avg long?
-    Table table;
 
-    public Booking(){
-        this.bookingID = -1;
-        this.guest = null;
-        this.numOfPeople = -1;
-        this.date = null;
-        this.table = new Table();
-    }
-    public Booking(Guest guest, int NumOfPeople, long date, Table t){
-        generateBookingId();
-        this.guest = guest;
-        this.numOfPeople = NumOfPeople;
+    public Booking(String bookingID, int numOfPeople, long date, Time startTime, Time endTime, String guest){
+        if(bookingID.equals("")){bookingID = UUID.randomUUID().toString();}
+        this.numOfPeople = numOfPeople;
         this.date = new Date(date);
-        this.table = t;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.guest = guest;
     }
-    public Booking(Guest guest, int NumOfPeople, Date date, Table t){
-        generateBookingId();
+
+    //@Ignore
+    public Booking(){
+        this.bookingID = UUID.randomUUID().toString();
+        this.guest = "";
+        this.numOfPeople = -1;
+        this.date = new Date();
+        this.startTime = new Time(date.getTime());
+        this.endTime = new Time(date.getTime());
+    }
+
+    @Ignore
+    public Booking(String guest, int NumOfPeople, Date date, Table t){
         this.guest = guest;
         this.numOfPeople = NumOfPeople;
         this.date = date;
-        this.table = t;
     }
-
     //Unnecessary constructors? Just pass in milliseconds whenever we interact with Date object.
     /*public Booking(Guest guest, int NumOfPeople, int day, int month, int year, int hour, int min){
         generateBookingId();
@@ -50,14 +72,12 @@ public class Booking implements Serializable{
         this.numOfPeople = NumOfPeople;
         this.date = generateDateObj(day, month, year, hour, min);
     }
-
     public Booking(int bookingID, Guest guest, int numOfPeople, Date date) {
         this.bookingID = bookingID;
         this.guest = guest;
         this.numOfPeople = numOfPeople;
         this.date = date;
     }
-
     public Booking(int bookingID, Guest guest, int NumOfPeople, int day, int month, int year, int hour, int min){
         this.bookingID = bookingID;
         this.guest = guest;
@@ -66,18 +86,12 @@ public class Booking implements Serializable{
     }*/
 
     //Getters -----------------------------------------------------
-    public int getBookingID() {
-        return bookingID;
-    }
-    public int getNumOfPeople() {
-        return numOfPeople;
-    }
-    public Guest getGuest() {
-        return guest;
-    }
-    public Date getDate() {
-        return date;
-    }
+    public String getBookingID() { return this.bookingID;}
+    public int getNumOfPeople() { return this.numOfPeople;}
+    public String getGuest()     { return this.guest;}
+    public Date getDate()       { return this.date;}
+    public Time getStartTime()  { return this.startTime;}
+    public Time getEndTime()    { return this.endTime;}
     public String getDateString() { //Converted to display as dd/mm/yyyy
         String result = "";
         if (date != null) {
@@ -90,7 +104,6 @@ public class Booking implements Serializable{
             if(d < 10){ day = "0"+d;}else{day+=d;}
             if(m< 10) {month = "0"+m;}else{month+=m;}
             year += y;
-
             //result = date.toString();
             result = day+"/"+month+"/"+year;
         }
@@ -104,52 +117,32 @@ public class Booking implements Serializable{
         }
         return result;
     }
-    public Time getStartTime(){return startTime;}
-    public Time getEndTime() {return endTime;}
 
-    public Table getTable() {
-        return table;
-    }
 
     //Setters -----------------------------------------------------
-    public void setBookingID(int bookingID) {
-        this.bookingID = bookingID;
-    }
-    public void setNumOfPeople(int numOfPeople) {
-        this.numOfPeople = numOfPeople;
-    }
-    public void setGuest(Guest guest) {
-        this.guest = guest;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setBookingID(String bookingID) {this.bookingID = bookingID;}
+    public void setNumOfPeople(int numOfPeople) {this.numOfPeople = numOfPeople;}
+    public void setGuest(String guest) {this.guest = guest;}
+    public void setDate(Date date) {this.date = date;}
     public void setDate(long date) {this.date = new Date(date);}
-    public void setTable(Table t) {table = t;}
-    public void setStartTime(Time startTime) { this.startTime = startTime; }
-    public void setEndTime(Time endTime) { this.endTime = endTime; }
+    public void setStartTime(Time x){this.startTime = x;}
+    public void setEndTime(Time x){this.endTime = x;}
 
     @Override
     public String toString() {
         return "Booking[ " +
                 "bookingID: " + bookingID +
-                ", guest: " + guest +
                 ", numOfPeople: " + numOfPeople +
                 ", date: " + date +
+                ", startTime: " + startTime +
+                ", endTime: "+ endTime+
+                ", guestID: " + guest +
                 " ]";
     }
 
-
-    private void generateBookingId() {
-        //TODO code to generate booking id num
-        //if(bookingID == -1){}
-        bookingID = 0;
-    }
-    private Date generateDateObj(int day, int month, int year, int hour, int min){
+    /*private Date generateDateObj(int day, int month, int year, int hour, int min){
         Calendar cal = Calendar.getInstance();
         cal.set(year,month,day,hour,min);
         return cal.getTime();
-    }
-
-
+    }*/
 }
