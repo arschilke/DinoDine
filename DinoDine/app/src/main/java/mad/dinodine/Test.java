@@ -53,6 +53,15 @@ public class Test extends AppCompatActivity{
                     tmp.setTextColor(Color.BLACK);
                     ll.addView(tmp,0);
                 }
+
+                List<Guest> gl = mDb.guestModel().getAllGuests();
+                for(Guest g: gl)
+                {
+                    TextView tmp = new TextView(getApplicationContext());
+                    tmp.setTextColor(Color.BLACK);
+                    tmp.setText(g.getFirstName() + " " + g.getLastName());
+                    ll.addView(tmp,0);
+                }
             }
         });
         /*btn.setOnClickListener(new View.OnClickListener(){
@@ -118,6 +127,10 @@ public class Test extends AppCompatActivity{
 
         //String x = AppRoomDB.getInMemoryDatabase(getApplicationContext()).getOpenHelper().getDatabaseName();
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
+
+        mDb.guestModel().insertGuest( new Guest("G01","Amanda","Tombolato","0000","at@email.com"));
+        mDb.guestModel().insertGuest(new Guest("G02","Fred", "Jones", "0000","fj@email.com"));
+
         String x = mDb.getName();
         String y = mDb.toString();
         Toast.makeText(getApplicationContext(),x + "\n" + y,(int) 1).show();

@@ -57,10 +57,17 @@ public class ListViewActivity extends AppCompatActivity {
         ArrayList<String> arrayBookings = new ArrayList<>();
         arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
 
+        ArrayList<String> ba = new ArrayList<String>();
+        List<Booking> bl = mDb.bookingModel().getAllBookings();
+
+        for(Booking b : bl){
+            ba.add(b.getBookingID() +" : " + b.getDateString());
+        }
+
         adapter = new ArrayAdapter<>(
                 ListViewActivity.this,
                 android.R.layout.simple_list_item_1,
-                arrayBookings
+                ba
         );
 
         resultL.setAdapter(adapter);

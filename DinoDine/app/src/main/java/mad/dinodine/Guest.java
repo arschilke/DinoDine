@@ -39,7 +39,6 @@ public class Guest {
         this.diet = "";
     }
 
-    @Ignore
     public Guest(String fname, String lName, String phoneNum, String email){
         this.guestID = UUID.randomUUID().toString();
         this.firstName = fname;

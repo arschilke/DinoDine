@@ -13,6 +13,9 @@ public interface GuestDao {
     @Insert
     public void insertGuest(Guest g);
 
+    //@Insert
+    //public void insertGuest(String f, String l, String p, String e);
+
     @Update
     public void updateGuest(Guest g);
     @Update
@@ -30,6 +33,6 @@ public interface GuestDao {
     List<Guest> getAllGuests();
 
     @Query("SELECT * FROM guest WHERE guestID = :id")
-    Guest getGuest(String id);
+    Guest getGuestByID(String id);
 
 }

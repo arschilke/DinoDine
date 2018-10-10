@@ -41,7 +41,7 @@ public class Booking implements Serializable{
 
 
     public Booking(String bookingID, int numOfPeople, long date, Time startTime, Time endTime, String guest){
-        if(bookingID.equals("")){bookingID = UUID.randomUUID().toString();}
+        if(bookingID.equals("")){bookingID = UUID.randomUUID().toString();}else{this.bookingID=bookingID;}
         this.numOfPeople = numOfPeople;
         this.date = new Date(date);
         this.startTime = startTime;
