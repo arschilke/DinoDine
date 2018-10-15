@@ -40,7 +40,9 @@ public class SelectDateActivity extends AppCompatActivity {
         Intent intent = getIntent();
         booking = (Booking) intent.getSerializableExtra("booking");
         //set date to today's date, incase user just hits confirm.
-        booking.setDate(calView.getDate());
+        if(!booking.setDate(calView.getDate())){
+            Toast.makeText(this, "This date is in the past", Toast.LENGTH_SHORT).show();
+        };
 
 
         calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
@@ -53,7 +55,9 @@ public class SelectDateActivity extends AppCompatActivity {
                 dateBooked = book.getTimeInMillis();
 
                 //set booking date.
-                booking.setDate(dateBooked);
+                if(!booking.setDate(dateBooked)){
+                    Toast.makeText(SelectDateActivity.this, "This date is in the past", Toast.LENGTH_SHORT).show();
+                }
 
                 Toast toast = Toast.makeText(getApplicationContext(), "booking.getDateString(): " + booking.getDateString() + "\nbooking.getTimeString(): " + booking.getTime(), (int) 1);
                 //toast.show();

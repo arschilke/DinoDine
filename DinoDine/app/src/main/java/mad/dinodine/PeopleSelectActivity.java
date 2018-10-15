@@ -37,7 +37,10 @@ public class PeopleSelectActivity extends AppCompatActivity {
                 else {
                     //Create booking and store numOfPpl in it
                     Booking bookRecord = new Booking();
-                    bookRecord.setNumOfPeople(numOfPpl);
+                    if(bookRecord.setNumOfPeople(numOfPpl)){
+                        Toast.makeText(PeopleSelectActivity.this, "Number of People less than 1 - not saved", Toast.LENGTH_SHORT).show();
+                    }
+
 
                     //store booking object along with intent and pass onto next activity
                     Intent intent = new Intent(getApplicationContext(), SelectDateActivity.class);

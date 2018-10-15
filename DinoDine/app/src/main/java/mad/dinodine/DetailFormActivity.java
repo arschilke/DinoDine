@@ -60,21 +60,29 @@ public class DetailFormActivity extends AppCompatActivity {
                 String p = phoneNum.getText().toString();
                 String e = emailET.getText().toString();
 
+                Guest PersonInfo = null;
                 Table t = mDb.tableModel().getTable("T01");
-                Guest PersonInfo = new Guest(f,l,p,e);
-                //booking = (Booking) intent.getSerializableExtra("bookingNow");
-                booking.setGuest(PersonInfo.getGuestID());
-                Allocation a = new Allocation(booking.getBookingID(),t.getTableID());
+                try {
+                    PersonInfo = new Guest(f, l, p, e);
 
-                //insert guest and booking to db.
-                mDb.guestModel().insertGuest(PersonInfo);
-                mDb.bookingModel().insertBooking(booking);
-                //Allocate Table
+                    //booking = (Booking) intent.getSerializableExtra("bookingNow");
+                    booking.setGuest(PersonInfo.getGuestID());
+                    Allocation a = new Allocation(booking.getBookingID(),t.getTableID());
+
+                    //insert guest and booking to db.
+                    mDb.guestModel().insertGuest(PersonInfo);
+                    mDb.bookingModel().insertBooking(booking);
+                    //Allocate Table
 
 
-                Toast.makeText(getApplicationContext(),"Booking successful!",(int) 1).show();
-                intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Booking successful!",(int) 1).show();
+                    intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
+                }
+                catch (NullPointerException npe){
+                    Toast.makeText(DetailFormActivity.this, "Both Names are Empty", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

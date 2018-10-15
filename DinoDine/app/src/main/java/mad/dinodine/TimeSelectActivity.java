@@ -60,9 +60,15 @@ public class TimeSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), DetailFormActivity.class);
-                booking.setStartTime(new Time(start.getHour(),start.getMinute(),0)); //change obj to simple int?
-                booking.setEndTime(new Time(finish.getHour(),finish.getMinute(),0));
+                boolean accepted = booking.setStartTime(new Time(start.getHour(),start.getMinute(),0)); //change obj to simple int?
+                if(!accepted){
+                    Toast.makeText(TimeSelectActivity.this, "Start Time is in the past", Toast.LENGTH_SHORT).show();
+                }
 
+                accepted = booking.setEndTime(new Time(finish.getHour(),finish.getMinute(),0));
+                if(!accepted){
+                    Toast.makeText(TimeSelectActivity.this, "End Time is before Start Time, not saved", Toast.LENGTH_SHORT).show();
+                }
                 intent.putExtra("booking", booking);
                 //Toast.makeText(getApplicationContext(),"Start: "+ start.getHour()+":"+start.getMinute()+"End: "+ finish.getHour()+":"+finish.getMinute(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(getApplicationContext(),"Start: "+ booking.getStartTime()+"  End: "+ booking.getEndTime(), Toast.LENGTH_SHORT).show();

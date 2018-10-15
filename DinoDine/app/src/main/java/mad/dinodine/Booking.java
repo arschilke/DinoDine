@@ -15,6 +15,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.Relation;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.sql.Time;
@@ -121,12 +122,42 @@ public class Booking implements Serializable{
 
     //Setters -----------------------------------------------------
     public void setBookingID(String bookingID) {this.bookingID = bookingID;}
-    public void setNumOfPeople(int numOfPeople) {this.numOfPeople = numOfPeople;}
+    public boolean setNumOfPeople(int numOfPeople) {
+        if (numOfPeople <= 0 ){
+            return false;
+        }
+            this.numOfPeople = numOfPeople;
+            return true;
+    }
     public void setGuest(String guest) {this.guest = guest;}
-    public void setDate(Date date) {this.date = date;}
-    public void setDate(long date) {this.date = new Date(date);}
-    public void setStartTime(Time x){this.startTime = x;}
-    public void setEndTime(Time x){this.endTime = x;}
+    public boolean setDate(Date date) {
+        if (date.before(getDate())){
+            return false;
+        }
+        this.date = date;
+        return true;
+    }
+    public boolean setDate(long date) {
+            this.date = new Date(date);
+            if(this.date.before(Calendar.getInstance().getTime())){
+                return false;
+            }
+            return true;
+    }
+    public boolean setStartTime(Time x){
+        this.startTime = x;
+        if(x.before(Calendar.getInstance().getTime())) {
+            return false;
+        }
+            return true;
+    }
+    public boolean setEndTime(Time x){
+        if(x.before(getStartTime())){
+            return false;
+        }
+        this.endTime = x;
+        return true;
+    }
 
     @Override
     public String toString() {

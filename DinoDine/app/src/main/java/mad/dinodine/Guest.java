@@ -6,6 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -14,35 +15,38 @@ public class Guest {
     @PrimaryKey
     @NonNull
     private String guestID="";
-    private String titleName;
+    //private String titleName;
     private String firstName;
     private String lastName;
 
-    private String phoneExt;
+    //private String phoneExt;
     private String phoneNum;
     private String email;
 
-    private String diet;
+    //private String diet;
 
 
     public Guest() {
         //this.guestID=0; //autoGenerate??
         this.guestID = UUID.randomUUID().toString();
-        this.titleName = "";
-        this.firstName = "";
-        this.lastName = "";
+        //this.titleName = "";
+        this.firstName = " ";
+        this.lastName = " ";
 
-        this.phoneExt = "";
+        //this.phoneExt = "";
         this.phoneNum = "";
         this.email = "";
 
-        this.diet = "";
+        //this.diet = "";
     }
 
     public Guest(String fname, String lName, String phoneNum, String email){
         this.guestID = UUID.randomUUID().toString();
         this.firstName = fname;
         this.lastName = lName;
+        if (fname.trim().equals("") && lName.trim().equals("") ){
+            throw new NullPointerException("Both Names are empty");
+        }
         //this.phoneExt = phoneExt;
         this.phoneNum = phoneNum;
         //this.titleName = title;
@@ -64,22 +68,33 @@ public class Guest {
 
     //Getters-------------------------------------------------------------------
     public String getGuestID() { return this.guestID; }
-    public String getDiet() { return this.diet; }
+    //public String getDiet() { return this.diet; }
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}
     public String getPhoneNum() {return phoneNum;}
-    public String getPhoneExt() {return phoneExt;}
-    public String getTitleName() {return titleName;}
+    //public String getPhoneExt() {return phoneExt;}
+    //public String getTitleName() {return titleName;}
     public String getEmail() {return email;}
 
     //Setters--------------------------------------------------------------------
     public void setGuestID(String x){this.guestID = x;}
-    public void setDiet(String x){this.diet = x;}
-    public void setFirstName(String firstName) { this.firstName = firstName;}
-    public void setLastName(String lastName) {this.lastName = lastName;}
+    //public void setDiet(String x){this.diet = x;}
+    public boolean setFirstName(String firstName) {
+        this.firstName = firstName;
+        if (firstName.equals("") && lastName.equals("")) {
+            return false;
+        }
+        return true;
+    }
+    public boolean setLastName(String lastName) {
+        this.lastName = lastName;
+        if (firstName.equals("") && lastName.equals("")) {
+            return false;
+        }
+        return true;}
     public void setPhoneNum(String phoneNum) {this.phoneNum = phoneNum;}
-    public void setPhoneExt(String phoneExt) {this.phoneExt = phoneExt;}
-    public void setTitleName(String titleName) {this.titleName = titleName;}
+    //public void setPhoneExt(String phoneExt) {this.phoneExt = phoneExt;}
+    //public void setTitleName(String titleName) {this.titleName = titleName;}
     public void setEmail(String email) {this.email = email;}
 
     @Override
