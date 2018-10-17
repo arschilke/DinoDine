@@ -127,32 +127,15 @@ public class Booking implements Serializable{
     }
     public void setGuest(String guest) {this.guest = guest;}
     public void setDate(Date date) {
-        if (date.before(getDate())){
-            throw new NullPointerException("Date in the past");
-        }
         this.date = date;
 
     }
     public void setDate(long date) {
         this.date = new Date(date);
-        Date temp = Calendar.getInstance().getTime();
-        temp.setHours(00);
-        temp.setMinutes(00);
-        temp.setSeconds(00);
-            if(this.date.before(temp)){
-                throw new NullPointerException("Date in the past");
-            }
 
     }
     public void setStartTime(Time x){
         this.startTime = x;
-        Date temp = Calendar.getInstance().getTime();
-        temp.setHours(00);
-        temp.setMinutes(00);
-        temp.setSeconds(00);
-        if(x.before(temp)) {
-            throw new NullPointerException("Date in the past");
-        }
     }
     public void setEndTime(Time x){
         if(x.before(getStartTime())){

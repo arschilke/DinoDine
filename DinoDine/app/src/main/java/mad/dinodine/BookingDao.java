@@ -34,6 +34,6 @@ public interface BookingDao {
     //@Query("SELECT * FROM booking WHERE table = :table") //join statement with booking and allocation or just put it in allocation, or store table ID in booking object
     //Booking getBookingForTable(int table);
 
-    @Query("SELECT * FROM booking WHERE GETDATE() < endTime AND GETDATE() > startTime")
+    @Query("SELECT * FROM booking WHERE (SELECT DATE('now')) < endTime AND (SELECT DATE('now')) > startTime")
     List<Booking> getBookingsOnNow();
 }
