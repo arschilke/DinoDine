@@ -27,10 +27,12 @@ public interface AllocationDao {
     void deleteAll();
     @Query("SELECT * FROM allocation ORDER BY booking")
     List<Allocation> getAllAllocations();
-    @Query("SELECT * FROM allocation where booking = :b ORDER BY `table`")
+    @Query("SELECT * FROM allocation where booking = :b ORDER BY table_id")
     List<Allocation> getAllAllocations(String b);
-    @Query("SELECT * FROM allocation where `table` = :t")
+    @Query("SELECT * FROM allocation where table_id = :t")
     List<Allocation> getAllocationsForTable(String t);
+    //@Query("SELECT * FROM `table` where table_id = :t")
+    //List<Table> getTabFromAll(String t);
 
 
 
