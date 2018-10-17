@@ -18,23 +18,23 @@ public class Allocation {
     @NonNull
     private String booking;
     @NonNull
-    private String table;
+    private String table_id;
 
     @Ignore
     public Allocation(){
         this.booking = "empty";
-        this.table = "empty";
+        this.table_id = "empty";
     }
 
-    public Allocation(String booking, String table){this.booking = booking;this.table=table;}
+    public Allocation(String booking, String table){this.booking = booking;this.table_id=table;}
 
     public String getBooking(){return booking;}
-    public String getTable(){return table;}
+    public String getTable(){return table_id;}
 
     public void setBooking(String booking){this.booking = booking;}
-    public void setTable(String table){this.table = table;}
+    public void setTable(String table){this.table_id = table;}
 
     public String toString(){
-        return "Allocation[ booking:"+booking+", table:"+table+" ]";
+        return "Allocation[ booking:"+booking+", table:"+table_id+" ]";
     }
 }
