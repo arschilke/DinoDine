@@ -72,6 +72,7 @@ public class DetailFormActivity extends AppCompatActivity {
                     //insert guest and booking to db.
                     mDb.guestModel().insertGuest(PersonInfo);
                     mDb.bookingModel().insertBooking(booking);
+                    mDb.allocationModel().insertAllocation(a);
                     //Allocate Table
 
 

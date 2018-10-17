@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -61,7 +62,14 @@ public class ListViewActivity extends AppCompatActivity {
         List<Booking> bl = mDb.bookingModel().getAllBookings();
 
         for(Booking b : bl){
-            ba.add(b.getBookingID() +" : " + b.getDateString());
+            List<Allocation> a = mDb.allocationModel().getAllAllocations(b.getBookingID());
+            Toast.makeText(getApplicationContext(),""+a,(int) 1).show();
+            Guest g = mDb.guestModel().getGuestByID(b.getGuest());
+
+            ba.add(
+                "Name: " + g.getFirstName()+ " " + g.getLastName() + " - Date: " +
+                b.getDateString() + " " +b.getStartTime() + " -  Group: " +
+                b.getNumOfPeople()); //getTables();..
         }
 
         adapter = new ArrayAdapter<>(

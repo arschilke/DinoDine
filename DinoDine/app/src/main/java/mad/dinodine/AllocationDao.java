@@ -28,7 +28,7 @@ public interface AllocationDao {
     @Query("SELECT * FROM allocation ORDER BY booking")
     List<Allocation> getAllAllocations();
     @Query("SELECT * FROM allocation where booking = :b")
-    List<Allocation> getAllAllocations(int b);
+    List<Allocation> getAllAllocations(String b);
     @Query("SELECT * FROM allocation where `table` = :t")
     List<Allocation> getAllocationsForTable(String t);
 }
