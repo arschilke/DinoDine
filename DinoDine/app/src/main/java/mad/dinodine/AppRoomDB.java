@@ -17,7 +17,7 @@ public abstract class AppRoomDB extends RoomDatabase {
 
     public static AppRoomDB getInMemoryDatabase(Context context){
         if(INSTANCE == null){
-            /*
+
             INSTANCE = Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppRoomDB.class)
                     //allowing queries on mainthread to get it up and running....
                     //remove and use Async tasks and background tasks.
@@ -25,7 +25,7 @@ public abstract class AppRoomDB extends RoomDatabase {
                     .build();
             /**/
             //RoomDatabase.Builder saved = Room.databaseBuilder(context.getApplicationContext(), AppRoomDB.class,"myDB");
-            /**/
+            /*
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppRoomDB.class, "myDB")
             .allowMainThreadQueries()
             .build();
