@@ -6,16 +6,13 @@ package mad.dinodine;
 //import android.os.Parcelable;
 
 import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.Relation;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.sql.Time;
@@ -122,41 +119,46 @@ public class Booking implements Serializable{
 
     //Setters -----------------------------------------------------
     public void setBookingID(String bookingID) {this.bookingID = bookingID;}
-    public boolean setNumOfPeople(int numOfPeople) {
+    public void setNumOfPeople(int numOfPeople) {
         if (numOfPeople <= 0 ){
-            return false;
+            throw new NullPointerException("Invaild Number of People");
         }
             this.numOfPeople = numOfPeople;
-            return true;
     }
     public void setGuest(String guest) {this.guest = guest;}
-    public boolean setDate(Date date) {
+    public void setDate(Date date) {
         if (date.before(getDate())){
-            return false;
+            throw new NullPointerException("Date in the past");
         }
         this.date = date;
-        return true;
+
     }
-    public boolean setDate(long date) {
-            this.date = new Date(date);
-            if(this.date.before(Calendar.getInstance().getTime())){
-                return false;
+    public void setDate(long date) {
+        this.date = new Date(date);
+        Date temp = Calendar.getInstance().getTime();
+        temp.setHours(00);
+        temp.setMinutes(00);
+        temp.setSeconds(00);
+            if(this.date.before(temp)){
+                throw new NullPointerException("Date in the past");
             }
-            return true;
+
     }
-    public boolean setStartTime(Time x){
+    public void setStartTime(Time x){
         this.startTime = x;
-        if(x.before(Calendar.getInstance().getTime())) {
-            return false;
+        Date temp = Calendar.getInstance().getTime();
+        temp.setHours(00);
+        temp.setMinutes(00);
+        temp.setSeconds(00);
+        if(x.before(temp)) {
+            throw new NullPointerException("Date in the past");
         }
-            return true;
     }
-    public boolean setEndTime(Time x){
+    public void setEndTime(Time x){
         if(x.before(getStartTime())){
-            return false;
+            throw new NullPointerException("date in the past");
         }
         this.endTime = x;
-        return true;
     }
 
     @Override
