@@ -24,10 +24,12 @@ public interface GuestDao {
     @Delete
     public void deleteGuest(Guest g);
     @Delete
-    public void deleteGuest(Guest... g);
+    public void deleteGuests(Guest... g);
 
     @Query("DELETE FROM guest")
     void deleteAll();
+    @Query("DELETE FROM guest WHERE guestID = :id")
+    void deleteGuest(String id);
 
     @Query("SELECT * FROM guest ORDER BY guestID")
     List<Guest> getAllGuests();

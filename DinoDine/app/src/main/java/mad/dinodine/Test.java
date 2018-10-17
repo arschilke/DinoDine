@@ -127,8 +127,10 @@ public class Test extends AppCompatActivity{
 
         //String x = AppRoomDB.getInMemoryDatabase(getApplicationContext()).getOpenHelper().getDatabaseName();
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
-
-        mDb.guestModel().insertGuest( new Guest("G01","Amanda","Tombolato","0000","at@email.com"));
+        //mDb.guestModel().deleteAll(); //will give errors if there are bookings existing.. change constraint to cascade? so everything related is deleted? delete guest= delete booking.
+        mDb.guestModel().deleteGuest("G01");
+        mDb.guestModel().deleteGuest("G02");
+        mDb.guestModel().insertGuest( new Guest("G01","Amy","Smith","0000","at@email.com"));
         mDb.guestModel().insertGuest(new Guest("G02","Fred", "Jones", "0000","fj@email.com"));
 
         String x = mDb.getName();
