@@ -8,6 +8,7 @@
     <color name="colorAccentDark">#7e7e7e</color>
     <color name="colorSelected">#bce784</color>
     <color name="colorPrimaryLight">#ffffff</color>
+    <color name="colorContrastPrimary">#97482e</color>
 
 
     <!--

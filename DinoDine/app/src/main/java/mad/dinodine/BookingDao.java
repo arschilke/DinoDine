@@ -26,11 +26,14 @@ public interface BookingDao {
     List<Booking> getAllBookings();
 
     @Query("SELECT * FROM booking WHERE booking_id = :id")
-    Booking getBooking(int id);
+    Booking getBooking(String id);
 
     @Query("SELECT * FROM booking WHERE guest = :guest")
-    Booking getBookingForGuest(int guest);
+    Booking getBookingForGuest(String guest);
 
     //@Query("SELECT * FROM booking WHERE table = :table") //join statement with booking and allocation or just put it in allocation, or store table ID in booking object
     //Booking getBookingForTable(int table);
+
+    @Query("SELECT * FROM booking WHERE GETDATE() < endTime AND GETDATE() > startTime")
+    List<Booking> getBookingsOnNow();
 }
