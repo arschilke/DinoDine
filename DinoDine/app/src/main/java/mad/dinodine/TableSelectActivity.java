@@ -3,12 +3,9 @@ package mad.dinodine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,16 +17,27 @@ public class TableSelectActivity extends AppCompatActivity {
     Button tables[] = new Button[numberOfTables];
     ArrayList<String> coloredTableIDs = new ArrayList<String>();
     List<Allocation> alist;
+    ArrayList<String> tlist; //list of tables currently in progress
+    Date current;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.table_select);
-
-/** use allocation and java to search for date
- *
+        current = Calendar.getInstance().getTime();
+// use allocation and java to search for date
 
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
         alist =  mDb.allocationModel().getAllAllocations();
+
+        for(Allocation a : alist){
+           Booking b = mDb.bookingModel().getBooking(a.getBooking());
+           if(b.getStartTime().before(current) && b.getEndTime().after(current)){
+               tlist.add(a.getTable_id());
+           }
+        }
+
+
+        /*
         for(Allocation a: alist){
             Booking b = mDb.bookingModel().getBooking(a.getBooking());
 
@@ -37,7 +45,7 @@ public class TableSelectActivity extends AppCompatActivity {
             // the string representation of date (month/day/year)
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
             if(df.format(b.getDate().toString()).equals( df.format(Calendar.getInstance().getTime()).toString())){
-                coloredTableIDs.add(a.getTable());
+                coloredTableIDs.add(a.getTable_id());
 
             }
             Log.d("MyActivity",df.format(b.getDate().toString()) + " " + df.format(Calendar.getInstance().getTime()).toString());
@@ -56,8 +64,8 @@ public class TableSelectActivity extends AppCompatActivity {
 
             tables[x].setText(tableID.substring(1));
 
-            if(coloredTableIDs.size() > 0) {
-                for (String nowID : coloredTableIDs) {
+            if(tlist.size() > 0) {
+                for (String nowID : tlist) {
                     if (nowID.equals(tableID)) {
                         tables[x].setBackground(this.getResources().getDrawable(R.drawable.rounded_allocated_border, getTheme()));
                     }
