@@ -25,4 +25,6 @@
     <style name="SpinnerTextAppearance" parent = "android:TextAppearance.DeviceDefault.Small">
         <item name="android:weekDayTextAppearance">@android:style/TextAppearance.Medium</item>
     </style>
+
+
 </resources>

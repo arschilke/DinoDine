@@ -12,10 +12,10 @@
         android:scrollbars="horizontal|vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -24,10 +24,10 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingBottom="10dp"
-                android:paddingEnd="10dp"
                 android:paddingStart="0dp"
                 android:paddingTop="0dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp">
 
@@ -35,14 +35,15 @@
                     android:id="@+id/T01"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
-                    android:layout_marginEnd="24dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="01"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/T02"
+                    app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,9 +51,9 @@
                     android:id="@+id/T02"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="84dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="84dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="02"
                     android:textColor="@color/colorPrimaryLight"
@@ -65,14 +66,12 @@
                     android:id="@+id/T03"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="84dp"
+                    android:layout_marginTop="24dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="03"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toStartOf="@+id/T06"
                     app:layout_constraintStart_toEndOf="@+id/T02"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,14 +79,14 @@
                     android:id="@+id/T04"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_marginEnd="70dp"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="137dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="25dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="04"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toStartOf="@+id/T05"
+                    app:layout_constraintBottom_toTopOf="@+id/T08"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/T01" />
 
@@ -95,38 +94,44 @@
                     android:id="@+id/T05"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_marginStart="68dp"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="113dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="186dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="05"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/T06"
                     app:layout_constraintStart_toEndOf="@+id/T04"
                     app:layout_constraintTop_toBottomOf="@+id/T03" />
 
                 <Button
                     android:id="@+id/T06"
-                    android:layout_width="100dp"
+                    android:layout_width="125dp"
                     android:layout_height="250dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="52dp"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="06"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/T10"
                     app:layout_constraintStart_toEndOf="@+id/T03"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/refresh" />
 
                 <Button
                     android:id="@+id/T07"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="07"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/T04" />
 
@@ -135,38 +140,55 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginStart="80dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="08"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@+id/T07"
-                    app:layout_constraintTop_toBottomOf="@+id/T04" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/T07" />
 
                 <Button
                     android:id="@+id/T09"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginStart="88dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="117dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="09"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@+id/T08"
-                    app:layout_constraintTop_toBottomOf="@+id/T05" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/T10"
+                    app:layout_constraintStart_toEndOf="@+id/T08" />
 
                 <Button
                     android:id="@+id/T10"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="116dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_primary_border"
                     android:text="10"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/T06"
-                    app:layout_constraintTop_toBottomOf="@+id/T05" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/T09" />
+
+                <ImageButton
+                    android:id="@+id/refresh"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/ic_refresh_white_40dp"
+                    android:contentDescription="refresh"
+                    app:layout_constraintBottom_toTopOf="@+id/T06"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </android.support.constraint.ConstraintLayout>
         </HorizontalScrollView>
