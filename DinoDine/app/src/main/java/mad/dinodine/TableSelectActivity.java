@@ -15,7 +15,6 @@ public class TableSelectActivity extends AppCompatActivity {
     private AppRoomDB mDb;
     static final int numberOfTables = 10;
     Button tables[] = new Button[numberOfTables];
-    ArrayList<String> coloredTableIDs = new ArrayList<String>();
     List<Allocation> alist;
     ArrayList<String> tlist; //list of tables currently in progress
     Date current;
@@ -23,6 +22,7 @@ public class TableSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.table_select);
+
         current = Calendar.getInstance().getTime();
 // use allocation and java to search for date
 
@@ -35,23 +35,6 @@ public class TableSelectActivity extends AppCompatActivity {
                tlist.add(a.getTable_id());
            }
         }
-
-
-        /*
-        for(Allocation a: alist){
-            Booking b = mDb.bookingModel().getBooking(a.getBooking());
-
-            // Create an instance of SimpleDateFormat used for formatting
-            // the string representation of date (month/day/year)
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-            if(df.format(b.getDate().toString()).equals( df.format(Calendar.getInstance().getTime()).toString())){
-                coloredTableIDs.add(a.getTable_id());
-
-            }
-            Log.d("MyActivity",df.format(b.getDate().toString()) + " " + df.format(Calendar.getInstance().getTime()).toString());
-
-        }
-*/
 
         for (int x = 0; x<numberOfTables; x++){
             String tableID = "T";
