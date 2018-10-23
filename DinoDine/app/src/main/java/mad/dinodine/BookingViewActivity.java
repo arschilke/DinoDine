@@ -22,10 +22,8 @@ public class BookingViewActivity extends AppCompatActivity {
     int tableID=-1;
     String tableName="";
     TextView title = null;
-    ArrayList<Booking> blist;
-    ArrayList<String> outputStrings;
-    ArrayAdapter<String> adapter;
-    ListView list;
+    ArrayList<Allocation> alist;
+    ListView list[] = new ListView[6];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,31 +40,80 @@ public class BookingViewActivity extends AppCompatActivity {
 
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
 
-        blist = (ArrayList<Booking>) mDb.bookingModel().getBookingsForTable(tableName);
-        outputStrings = new ArrayList<>();
+        alist = (ArrayList<Allocation>) mDb.allocationModel().getAllocationsForTable(tableName);
 
-        list = findViewById(R.id.listView);
+        for(int i = 0;i < 6; i++) {
+            String l = "listView"+i;
+            list[i] = findViewById(getResources().getIdentifier(l, "id", getPackageName()));
+        }
         Context context = getApplicationContext();
         SimpleDateFormat df = new SimpleDateFormat("h:mm a");
 
+        ArrayList<String> time = new ArrayList<String>();
+        ArrayList<String> first = new ArrayList<String>();
+        ArrayList<String> last = new ArrayList<String>();
+        ArrayList<String> num = new ArrayList<String>();
+        ArrayList<String> email = new ArrayList<String>();
+        ArrayList<String> phone = new ArrayList<String>();
 
 
-        for (int i = 0; i < blist.size(); i++){
-            Booking b =  blist.get(i);
+
+        for (int i = 0; i < alist.size(); i++){
+
+            Booking b = mDb.bookingModel().getBooking(alist.get(i).getBooking());
             Guest g = mDb.guestModel().getGuestByID(b.getGuest());
 
-            outputStrings.add(df.format(b.getStartTime()) + " \t" +
-                                        g.getFirstName() + " \t" +
-                                        g.getLastName() + " \t" +
-                                        b.getNumOfPeople() + " \t\t" +
-                                        g.getEmail()  + " \t" +
-                                        g.getPhoneNum());
+            time.add(df.format(b.getStartTime()));
+            first.add(g.getFirstName());
+            last.add(g.getLastName());
+            num.add("" + b.getNumOfPeople());
+            email.add(g.getEmail());
+            phone.add(g.getPhoneNum());
+
         }
-        adapter = new ArrayAdapter<>(
+
+        int i = 0;
+        list[i].setAdapter(new ArrayAdapter<String>(
+                    BookingViewActivity.this,
+                    android.R.layout.simple_list_item_1,
+                    time
+            ));
+            i++;
+
+        list[i].setAdapter(new ArrayAdapter<String>(
                 BookingViewActivity.this,
                 android.R.layout.simple_list_item_1,
-                outputStrings
-        );
-        list.setAdapter(adapter);
+                first
+        ));
+
+        i++;
+
+        list[i].setAdapter(new ArrayAdapter<>(
+                BookingViewActivity.this,
+                android.R.layout.simple_list_item_1,
+                last
+        ));
+        i++;
+
+        list[i].setAdapter(new ArrayAdapter<>(
+                BookingViewActivity.this,
+                android.R.layout.simple_list_item_1,
+                num
+        ));
+        i++;
+
+        list[i].setAdapter(new ArrayAdapter<>(
+                BookingViewActivity.this,
+                android.R.layout.simple_list_item_1,
+                email
+        ));
+        i++;
+
+        list[i].setAdapter(new ArrayAdapter<>(
+                BookingViewActivity.this,
+                android.R.layout.simple_list_item_1,
+                phone
+        ));
+
     }
 }
