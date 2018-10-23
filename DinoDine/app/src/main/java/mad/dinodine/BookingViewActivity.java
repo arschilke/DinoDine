@@ -55,11 +55,11 @@ public class BookingViewActivity extends AppCompatActivity {
             Booking b =  blist.get(i);
             Guest g = mDb.guestModel().getGuestByID(b.getGuest());
 
-            outputStrings.add(df.format(b.getStartTime()) + "\t" +
-                                        g.getFirstName() + "\t" +
-                                        g.getLastName() + "\t" +
-                                        b.getNumOfPeople() + "\t" +
-                                        g.getEmail()  + "\t" +
+            outputStrings.add(df.format(b.getStartTime()) + " \t" +
+                                        g.getFirstName() + " \t" +
+                                        g.getLastName() + " \t" +
+                                        b.getNumOfPeople() + " \t\t" +
+                                        g.getEmail()  + " \t" +
                                         g.getPhoneNum());
         }
         adapter = new ArrayAdapter<>(
