@@ -7,10 +7,10 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(primaryKeys = {"booking","table"},
+@Entity(primaryKeys = {"booking","table_id"},
         foreignKeys = {@ForeignKey(entity = Booking.class, parentColumns = "booking_id", childColumns = "booking"),
-                @ForeignKey(entity = Table.class, parentColumns = "table_id", childColumns = "table")},
-        indices = @Index(value = {"table"}))
+                @ForeignKey(entity = Table.class, parentColumns = "table_id", childColumns = "table_id")},
+        indices = @Index(value = {"table_id"}))
 public class Allocation {
 
     //todo add index for foreign keys...
@@ -26,10 +26,13 @@ public class Allocation {
         this.table_id = "empty";
     }
 
-    public Allocation(String booking, String table){this.booking = booking;this.table_id=table;}
+    public Allocation(String booking, String table_id){
+        this.booking = booking;
+        this.table_id=table_id;
+    }
 
     public String getBooking(){return booking;}
-    public String getTable(){return table_id;}
+    public String getTable_id(){return table_id;}
 
     public void setBooking(String booking){this.booking = booking;}
     public void setTable(String table){this.table_id = table;}
