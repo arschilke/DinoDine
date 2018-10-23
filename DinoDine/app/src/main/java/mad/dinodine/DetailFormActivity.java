@@ -89,7 +89,7 @@ public class DetailFormActivity extends AppCompatActivity {
 
                 if (v.getId() == R.id.submitBtn) {
                     Intent mailIntent = new Intent(Intent.ACTION_VIEW);
-                    Uri data = Uri.parse("mailto:?subject=" + "Dinodine - Your booking details!" + "&body=" + "Hi there, \n\nYour booking details are as follows: \n\n" + booking.toString() + "&body=" + "\n\n Looking forward to seeing you! \n\nDinodine Team" + "&to=" + emailET.getText().toString());
+                    Uri data = Uri.parse("mailto:?subject=" + "Dinodine - Your booking details!" + "&body=" + "Hi there, \n\nYour booking details are as follows: \n\n Name: " + fName.getText().toString() + " " + lName.getText().toString() + "\nDate: " + booking.getDate() + "\nTime: " + booking.getTime() + "\nNumber of people: " +  booking.getNumOfPeople() + "\n\n Looking forward to seeing you! \n\nDinodine Team" + "&to=" + emailET.getText().toString());
                     mailIntent.setData(data);
                     startActivity(Intent.createChooser(mailIntent, "Send Email"));
                 }
