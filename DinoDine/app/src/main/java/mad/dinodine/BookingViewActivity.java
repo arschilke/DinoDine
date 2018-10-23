@@ -19,7 +19,7 @@ public class BookingViewActivity extends AppCompatActivity {
     int tableID=-1;
     String tableName="";
     TextView title = null;
-    ArrayList<Allocation> alist;
+    ArrayList<Booking> blist;
     TableLayout tableLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,7 @@ public class BookingViewActivity extends AppCompatActivity {
 
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
 
-        alist = (ArrayList<Allocation>) mDb.allocationModel().getAllocationsForTable(tableName);
-
+        blist = (ArrayList<Booking>) mDb.bookingModel().getBookingsForTable(tableName);
         tableLayout = findViewById(R.id.table_layout);
 
         Context context = getApplicationContext();
@@ -45,9 +44,8 @@ public class BookingViewActivity extends AppCompatActivity {
 
 
 
-        for (int i = 0; i < alist.size(); i++){
-            Allocation a = alist.get(i);
-            Booking b = mDb.bookingModel().getBooking(a.getBooking());
+        for (int i = 0; i < blist.size(); i++){
+            Booking b =  blist.get(i);
             Guest g = mDb.guestModel().getGuestByID(b.getGuest());
             TableRow tableRow = new TableRow(context);
             TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
