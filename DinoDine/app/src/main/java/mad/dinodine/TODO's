@@ -1,0 +1,20 @@
+
+Move the populateJSON(mDB) method to the home activity, so that as soon as we start, the tables are loaded. get it out of enter details..
+(Also remove test button from ListViewActivity when it is no longer needed).
+
+Change database from inMemory to persistent database. (Just edit AppRoomDB, but make sure DB related stuff is finished first, otherwise you can't edit DB Schema on the fly)
+
+Make BookingViewActivity display info similar to ListViewActivity,
+
+?Load up some test data intially, so you can see / interact with tables and bookings without first making 20 odd bookings for demo..
+
+SelectDateActivity, check that date is >= to currentDate.. so no bookings allowed in the past..
+
+Make a function that goes through and deletes all entries [allocations, bookings and then guests so foreign key constraints are met] before today's date, so past bookings automatically clear themselves..
+//should this be saved in another database to keep track of records? and just have a 'working' set of bookings that are relevant for restaurant.
+
+If booking Date == todays Date, then check that startTime for booking is after (>=) to currentTime. At the moment it only checks that end time is after startTime.
+
+
+WAS there a another page we were supposed to have, where you could click on it and edit details? or even delete allocations/bookings/guests? ??
+

@@ -25,6 +25,13 @@ public interface AllocationDao {
 
     @Query("DELETE FROM allocation")
     void deleteAll();
+    @Query("DELETE FROM allocation WHERE booking=:b")
+    void deleteAllocationWithBookingID(String b);
+    @Query("DELETE FROM allocation WHERE table_id=:t")
+    void deleteAllocationWithTableID(String t);
+    @Query("DELETE FROM allocation WHERE booking=:b AND table_id=:t")
+    void deleteAllocation(String b, String t);
+
     @Query("SELECT * FROM allocation ORDER BY booking")
     List<Allocation> getAllAllocations();
     @Query("SELECT * FROM allocation where booking = :b ORDER BY table_id")

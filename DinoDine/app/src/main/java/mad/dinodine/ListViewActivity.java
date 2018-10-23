@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class ListViewActivity extends AppCompatActivity {
 
@@ -55,21 +56,38 @@ public class ListViewActivity extends AppCompatActivity {
 
 
 
-        ArrayList<String> arrayBookings = new ArrayList<>();
-        arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
+        //ArrayList<String> arrayBookings = new ArrayList<>();
+        //arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
 
         ArrayList<String> ba = new ArrayList<String>();
+        //Add first row - contains column headers.
+        String[] info = {"Date", "Time", "Table", "People", "Name"};
+        String infoFormat = "%1$-22s  %2$-15s   %3$s     %4$s   %5$-30.30s";
+        ba.add(String.format(infoFormat, (Object[])info));
+
         List<Booking> bl = mDb.bookingModel().getAllBookings();
 
         for(Booking b : bl){
-            List<Allocation> a = mDb.allocationModel().getAllAllocations(b.getBookingID());
-            Toast.makeText(getApplicationContext(),""+a,(int) 1).show();
             Guest g = mDb.guestModel().getGuestByID(b.getGuest());
+            String date = b.getDateString();
+            String sTime = b.getStartTime().toString().substring(0,5);
+            String eTime = b.getEndTime().toString().substring(0,5);
+            String time = sTime+" - "+eTime;
+            String fname = g.getFirstName();
+            String lname = g.getLastName();
+            String name = fname+" "+lname;
+            int numPpl = b.getNumOfPeople();
+            String tableID = mDb.tableModel().getTableFromBookingID(b.getBookingID()).getTableID();
+            String t = tableID.substring(1);
 
-            ba.add(
-                "Name: " + g.getFirstName()+ " " + g.getLastName() + " - Date: " +
-                b.getDateString() + " " +b.getStartTime() + " -  Group: " +
-                b.getNumOfPeople()); //getTables();..
+            String fmt = "";
+            //https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html
+            //https://developer.android.com/reference/java/util/Formatter
+            String format = "%-15s  %-15s   %s     %2d           %-30.30s";
+            //%[argument_index$][flags][width][.precision]conversion
+            fmt = String.format(Locale.ENGLISH, format, date,time, t,numPpl, name); //remove locale.english if this stuffs up..
+
+            ba.add(fmt);
         }
 
         adapter = new ArrayAdapter<>(

@@ -54,7 +54,7 @@ public class Table implements Serializable {
         this.neighbours = new ArrayList<String>();
     }
     @Ignore
-    public Table(String tableID, int capacity, int maxCapacity, ArrayList<String> neighbours) {
+    public Table(@NonNull String tableID, int capacity, int maxCapacity, ArrayList<String> neighbours) {
         this.tableID = tableID;
         this.capacity = capacity;
         this.maxCapacity = maxCapacity; //or do we set maxCap to be capacity + a constant. eg tables can always have at least 2 chairs added..
@@ -63,7 +63,7 @@ public class Table implements Serializable {
     }
 
     //Getters
-    public String getTableID() {
+    @NonNull public String getTableID() {
         return tableID;
     }
 

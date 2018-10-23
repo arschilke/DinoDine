@@ -36,5 +36,4 @@ public interface GuestDao {
 
     @Query("SELECT * FROM guest WHERE guestID = :id")
     Guest getGuestByID(String id);
-
 }

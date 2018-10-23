@@ -52,7 +52,6 @@ public class DetailFormActivity extends AppCompatActivity {
         submitBtn = findViewById(R.id.submitBtn);
 
 
-        //TODO need to sent data to match with previous pages
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,39 +61,49 @@ public class DetailFormActivity extends AppCompatActivity {
                 String p = phoneNum.getText().toString();
                 String e = emailET.getText().toString();
 
+                boolean valid = true;
+                String msg = "";
+                if(f.trim().equals("") && l.trim().equals("")){ //if name fields are empty.
+                    valid = false;
+                    msg += "Must enter a value for first name or last name\n";
+                }
+
                 Guest PersonInfo = null;
-                Table t = mDb.tableModel().getTable("T01");
-                try {
-                    PersonInfo = new Guest(f, l, p, e);
+                Table t = mDb.tableModel().getTable("T01");//todo A function that searches through tables and selects next available one
+                                                            //write a query? Or does one exist already..
+                PersonInfo = new Guest(f, l, p, e);
 
-                    //booking = (Booking) intent.getSerializableExtra("bookingNow");
-                    booking.setGuest(PersonInfo.getGuestID());
-                    Allocation a = new Allocation(booking.getBookingID(),t.getTableID());
+                booking.setGuest(PersonInfo.getGuestID());
+                Allocation a = null;
+                if(t!=null) {
+                    a = new Allocation(booking.getBookingID(), t.getTableID());
+                }
+                else {
+                    valid = false;
+                    msg += "Couldn't get data for table\n";
+                }
 
-                    //insert guest and booking to db.
+                if(valid) { //if everything is ok up to this point, then insert data to database.
                     mDb.guestModel().insertGuest(PersonInfo);
                     mDb.bookingModel().insertBooking(booking);
                     mDb.allocationModel().insertAllocation(a);
-                    //Allocate Table
-
 
                     Toast.makeText(getApplicationContext(),"Booking successful!",(int) 1).show();
                     intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
-                }
-                catch (NullPointerException npe){
-                    Toast.makeText(DetailFormActivity.this, "Both Names are Empty", Toast.LENGTH_SHORT).show();
-                }
 
                 //sends email to guest with booking details
-
-                if (v.getId() == R.id.submitBtn) {
-                    Intent mailIntent = new Intent(Intent.ACTION_VIEW);
-                    Uri data = Uri.parse("mailto:?subject=" + "Dinodine - Your booking details!" + "&body=" + "Hi there, \n\nYour booking details are as follows: \n\n Name: " + fName.getText().toString() + " " + lName.getText().toString() + "\nDate: " + booking.getDate() + "\nTime: " + booking.getTime() + "\nNumber of people: " +  booking.getNumOfPeople() + "\n\n Looking forward to seeing you! \n\nDinodine Team" + "&to=" + emailET.getText().toString());
-                    mailIntent.setData(data);
-                    startActivity(Intent.createChooser(mailIntent, "Send Email"));
+                    if (v.getId() == R.id.submitBtn) {
+                        Intent mailIntent = new Intent(Intent.ACTION_VIEW);
+                        Uri data = Uri.parse("mailto:?subject=" + "Dinodine - Your booking details!" + "&body=" + "Hi there, \n\nYour booking details are as follows: \n\n Name: " + fName.getText().toString() + " " + lName.getText().toString() + "\nDate: " + booking.getDate() + "\nTime: " + booking.getTime() + "\nNumber of people: " +  booking.getNumOfPeople() + "\n\n Looking forward to seeing you! \n\nDinodine Team" + "&to=" + emailET.getText().toString());
+                        mailIntent.setData(data);
+                        startActivity(Intent.createChooser(mailIntent, "Send Email"));
+                    }
                 }
-
+                else
+                {
+                    Toast.makeText(getApplicationContext(),msg,(int) 0).show();
+                }
             }
         });
 
