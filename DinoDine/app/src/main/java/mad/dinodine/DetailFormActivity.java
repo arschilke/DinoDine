@@ -2,6 +2,7 @@ package mad.dinodine;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,12 +85,17 @@ public class DetailFormActivity extends AppCompatActivity {
                     Toast.makeText(DetailFormActivity.this, "Both Names are Empty", Toast.LENGTH_SHORT).show();
                 }
 
+                //sends email to guest with booking details
+
+                if (v.getId() == R.id.submitBtn) {
+                    Intent mailIntent = new Intent(Intent.ACTION_VIEW);
+                    Uri data = Uri.parse("mailto:?subject=" + "Dinodine - Your booking details!" + "&body=" + "Hi there, \n\nYour booking details are as follows: \n\n" + booking.toString() + "&body=" + "\n\n Looking forward to seeing you! \n\nDinodine Team" + "&to=" + emailET.getText().toString());
+                    mailIntent.setData(data);
+                    startActivity(Intent.createChooser(mailIntent, "Send Email"));
+                }
+
             }
         });
-
-
-
-
 
     }
 
