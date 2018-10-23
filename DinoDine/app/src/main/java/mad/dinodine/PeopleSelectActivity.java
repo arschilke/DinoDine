@@ -17,7 +17,7 @@ public class PeopleSelectActivity extends AppCompatActivity {
 
     Spinner spinner;
 
-    private int numOfPpl = -1;
+    private int numOfPpl = 1; //1 is selected by default when we load the page.. so set to 1
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,26 +30,23 @@ public class PeopleSelectActivity extends AppCompatActivity {
         confirmPeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean valid = true;
+                String msg = "";
                 numOfPpl = Integer.parseInt(spinner.getSelectedItem().toString());
                 if(numOfPpl <= 0){
-                    Toast.makeText(getApplicationContext(), "Please select a number", Toast.LENGTH_SHORT).show();
+                    valid = false;
+                    msg +="Please select how many people this booking is for\n";
                 }
-                else {
+                if(valid) {
                     //Create booking and store numOfPpl in it
-                    Booking bookRecord = new Booking();
-                    try {
-                        bookRecord.setNumOfPeople(numOfPpl);
+                    Booking booking = new Booking();
+                    booking.setNumOfPeople(numOfPpl);
 
-
-                        //store booking object along with intent and pass onto next activity
-                        Intent intent = new Intent(getApplicationContext(), SelectDateActivity.class);
-                        intent.putExtra("booking", bookRecord);
-                        startActivity(intent);
-                    }catch (Exception e){
-                        Log.d(".setOnClickListener",e.getMessage());
-                        Toast.makeText(PeopleSelectActivity.this, "Invaild Number of People" + numOfPpl, Toast.LENGTH_SHORT).show();
-                    }
-                }
+                    //store booking object along with intent and pass onto next activity
+                    Intent intent = new Intent(getApplicationContext(), SelectDateActivity.class);
+                    intent.putExtra("booking", booking);
+                    startActivity(intent);
+                }else{Toast.makeText(getApplicationContext(),msg,(int) 0).show();}
             }
         });
     }

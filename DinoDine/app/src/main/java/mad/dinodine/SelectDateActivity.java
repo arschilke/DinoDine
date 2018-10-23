@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -47,10 +48,21 @@ public class SelectDateActivity extends AppCompatActivity {
         calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+
                 //create a temporary calendar and set the time to the selected day.
-                Calendar book = new GregorianCalendar();
-                book.set(year,month,dayOfMonth);
+                Calendar book = Calendar.getInstance();
+                book.set(year,month,dayOfMonth); //book the date, with time at 1am, (instead of 12 as less confusing?? maybe)
+                //getCalendar for date right now - (Think could use calView.getTime()?)
+                Log.d("dateCalView: ", ""+calView.getDate());
+                Calendar rn = Calendar.getInstance();
+                rn.set(Calendar.HOUR_OF_DAY, 0);rn.set(Calendar.MINUTE, 0);rn.set(Calendar.SECOND, 0);
+                Log.d("dateRN:",""+rn.getTimeInMillis());
                 //set booked date to time of new calendar
+                if(book.getTimeInMillis() < rn.getTimeInMillis()) // if chosen date is less  than current date (before currentDate)
+                {Log.d("ERROR","BOOKED DATE IN PAST");
+                    Toast.makeText(getApplicationContext(),"NO GOOD",(int) 0).show();}
+                else
+                    Toast.makeText(getApplicationContext(),"DATE IS GREAT",(int) 0).show();
                 dateBooked = book.getTimeInMillis();
 
                 //set booking date.

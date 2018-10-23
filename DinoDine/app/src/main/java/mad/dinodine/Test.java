@@ -158,6 +158,7 @@ public class Test extends AppCompatActivity{
         }
         //mDb.guestModel().deleteGuest("G01");
         //mDb.guestModel().deleteGuest("G02");
+        if(mDb.tableModel().getTable("T02")==null)
             mDb.tableModel().insertTable(new Table("T02", 5, 8));
 
         mDb.guestModel().insertGuest( new Guest("G01","Amy","Smith","0000","at@email.com"));

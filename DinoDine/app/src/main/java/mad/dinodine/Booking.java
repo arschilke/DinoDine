@@ -84,7 +84,7 @@ public class Booking implements Serializable{
     }*/
 
     //Getters -----------------------------------------------------
-    public String getBookingID() { return this.bookingID;}
+    @NonNull public String getBookingID() { return this.bookingID;}
     public int getNumOfPeople() { return this.numOfPeople;}
     public String getGuest()     { return this.guest;}
     public Date getDate()       { return this.date;}
@@ -118,10 +118,10 @@ public class Booking implements Serializable{
 
 
     //Setters -----------------------------------------------------
-    public void setBookingID(String bookingID) {this.bookingID = bookingID;}
-    public void setNumOfPeople(int numOfPeople) /*throws Exception*/ {
+    public void setBookingID(@NonNull String bookingID) {this.bookingID = bookingID;}
+    public void setNumOfPeople(int numOfPeople){
         if (numOfPeople <= 0 ){
-            //throw new Exception("Invaild Number of People");
+            this.numOfPeople = 0;
         }
             this.numOfPeople = numOfPeople;
     }
@@ -138,9 +138,6 @@ public class Booking implements Serializable{
         this.startTime = x;
     }
     public void setEndTime(Time x){
-        if(x.before(getStartTime())){
-            throw new NullPointerException("date in the past");
-        }
         this.endTime = x;
     }
 

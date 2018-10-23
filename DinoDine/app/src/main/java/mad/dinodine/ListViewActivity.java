@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class ListViewActivity extends AppCompatActivity {
 
@@ -55,8 +56,8 @@ public class ListViewActivity extends AppCompatActivity {
 
 
 
-        ArrayList<String> arrayBookings = new ArrayList<>();
-        arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
+        //ArrayList<String> arrayBookings = new ArrayList<>();
+        //arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
 
         ArrayList<String> ba = new ArrayList<String>();
         //Add first row - contains column headers.
@@ -80,34 +81,14 @@ public class ListViewActivity extends AppCompatActivity {
             String t = tableID.substring(1);
 
             String fmt = "";
+            //https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html
+            //https://developer.android.com/reference/java/util/Formatter
             String format = "%-15s  %-15s   %s     %2d           %-30.30s";
             //%[argument_index$][flags][width][.precision]conversion
-            fmt = String.format(format, date,time, t,numPpl, name);
+            fmt = String.format(Locale.ENGLISH, format, date,time, t,numPpl, name); //remove locale.english if this stuffs up..
 
             ba.add(fmt);
         }
-
-
-
-        //ba.add(fmt);
-
-//        String da,ti,na; int nu;
-//
-//        da="23/10/2018";ti="17:00 - 19:00";na="Amy Smith";nu=5;if(nu<10){na=" "+na;}
-//        fmt = String.format(format, da,ti, t,nu,na);
-//        //ba.add(fmt);
-//
-//        da="24/11/2018";ti="18:00 - 19:30";na="John Fogerty and now time for a really long one. And maybe I'll keep increasing and see what happens...";nu=10;if(nu<10){na=" "+na;}
-//        fmt = String.format(format, da,ti, t,nu,na);
-//        //ba.add(fmt);
-//
-//        da="28/11/1990";ti="18:30 - 21:00";na="Daniel Masterton";nu=8;if(nu<10){na=" "+na;}
-//        fmt = String.format(format, da,ti,t,nu,na);
-        //ba.add(fmt);
-
-//        23/10/2018  |  17:00-19:00  |  Amy Smith                   |  5
-//        24/11/2018  |  18:00-19:30  |  John Fogerty                |  4
-//        28/11/1990  |  18:30-21:00  |  Daniel Masterton            |  8
 
         adapter = new ArrayAdapter<>(
                 ListViewActivity.this,

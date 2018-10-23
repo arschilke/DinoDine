@@ -3,6 +3,7 @@ package mad.dinodine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -64,22 +65,29 @@ public class TimeSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), DetailFormActivity.class);
-                Calendar c = new GregorianCalendar();
-                c.set(HOUR_OF_DAY, 10);
-                try{ booking.setStartTime(new Time(start.getHour(),start.getMinute(),0));} //change obj to simple int?
-                catch( NullPointerException npe){
-                    Toast.makeText(TimeSelectActivity.this, "Start Time is in the past", Toast.LENGTH_SHORT).show();
+                Calendar c = Calendar.getInstance();
+                c.set(Calendar.HOUR_OF_DAY, start.getHour());c.set(Calendar.MINUTE, start.getMinute());c.set(Calendar.SECOND, 0);
+                //Log.d("time:",""+start.getHour()+ " " + start.getMinute());
+                booking.setStartTime(new Time(c.getTimeInMillis()));
+
+                c.set(Calendar.HOUR_OF_DAY, finish.getHour());c.set(Calendar.MINUTE, finish.getMinute());c.set(Calendar.SECOND, 0);
+                //Log.d("time:",""+finish.getHour()+ " " + finish.getMinute());
+                booking.setEndTime(new Time(c.getTimeInMillis()));
+
+                boolean valid = true;
+                String msg = "";
+
+                if(booking.getStartTime().getTime() > booking.getEndTime().getTime()){ //check times are valid; // check startTime isn't before currentTime if bookingdate == todays date..
+                    valid = false;
+                    msg += "End time must be after Start time\n";
                 }
 
-                try{ booking.setEndTime(new Time(finish.getHour(),finish.getMinute(),0));}
-                catch (NullPointerException npe){
-                    Toast.makeText(TimeSelectActivity.this, "End Time is before Start Time, not saved", Toast.LENGTH_SHORT).show();
+                if(valid) {
+                    intent.putExtra("booking", booking);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),msg,(int) 0).show();
                 }
-                intent.putExtra("booking", booking);
-                //Toast.makeText(getApplicationContext(),"Start: "+ start.getHour()+":"+start.getMinute()+"End: "+ finish.getHour()+":"+finish.getMinute(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"Start: "+ booking.getStartTime()+"  End: "+ booking.getEndTime(), Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-
             }
         });
     }

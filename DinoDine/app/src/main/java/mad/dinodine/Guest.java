@@ -24,25 +24,22 @@ public class Guest {
 
     public Guest() {
         this.guestID = UUID.randomUUID().toString();
-        this.firstName = " ";
-        this.lastName = " ";
-        this.phoneNum = "";
-        this.email = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.phoneNum = "-empty-";
+        this.email = "-empty-";
 
     }
 
-    public Guest(String fname, String lName, String phoneNum, String email) /*throws Exception*/{
+    public Guest(String fname, String lName, String phoneNum, String email) {
         this.guestID = UUID.randomUUID().toString();
         this.firstName = fname;
         this.lastName = lName;
-        if (fname.trim().equals("") && lName.trim().equals("") ){
-            //throw new Exception("Both Names are empty");
-        }
         this.phoneNum = phoneNum;
         this.email = email;
     }
 
-    public Guest(String guestID, String fname, String lName, String phoneNum, String email){
+    public Guest(@NonNull String guestID, String fname, String lName, String phoneNum, String email){
         this.guestID = guestID;
         this.firstName = fname;
         this.lastName = lName;
@@ -52,27 +49,21 @@ public class Guest {
 
 
     //Getters-------------------------------------------------------------------
-    public String getGuestID() { return this.guestID; }
+    @NonNull public String getGuestID() { return this.guestID; }
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}
     public String getPhoneNum() {return phoneNum;}
     public String getEmail() {return email;}
 
     //Setters--------------------------------------------------------------------
-    public void setGuestID(String x){this.guestID = x;}
+    public void setGuestID(@NonNull String x){this.guestID = x;}
     /* NEEDS TRY AND CATCH
      */
-    public void setFirstName(String firstName) /*throws Exception*/{
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
-        if (firstName.equals("") && lastName.equals("")) {
-                //throw new Exception("Input Error");
-        }
     }
-    public void setLastName(String lastName) /*throws Exception*/{
+    public void setLastName(String lastName) {
         this.lastName = lastName;
-        if (firstName.equals("") && lastName.equals("")) {
-            //throw new Exception("Input Error");
-        }
         }
     public void setPhoneNum(String phoneNum) {this.phoneNum = phoneNum;}
     public void setEmail(String email) {this.email = email;}
