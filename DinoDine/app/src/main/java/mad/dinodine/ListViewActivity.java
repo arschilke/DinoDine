@@ -59,18 +59,55 @@ public class ListViewActivity extends AppCompatActivity {
         arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
 
         ArrayList<String> ba = new ArrayList<String>();
+        //Add first row - contains column headers.
+        String[] info = {"Date", "Time", "Table", "People", "Name"};
+        String infoFormat = "%1$-22s  %2$-15s   %3$s     %4$s   %5$-30.30s";
+        ba.add(String.format(infoFormat, (Object[])info));
+
         List<Booking> bl = mDb.bookingModel().getAllBookings();
 
         for(Booking b : bl){
-            List<Allocation> a = mDb.allocationModel().getAllAllocations(b.getBookingID());
-            Toast.makeText(getApplicationContext(),""+a,(int) 1).show();
             Guest g = mDb.guestModel().getGuestByID(b.getGuest());
+            String date = b.getDateString();
+            String sTime = b.getStartTime().toString().substring(0,5);
+            String eTime = b.getEndTime().toString().substring(0,5);
+            String time = sTime+" - "+eTime;
+            String fname = g.getFirstName();
+            String lname = g.getLastName();
+            String name = fname+" "+lname;
+            int numPpl = b.getNumOfPeople();
+            String tableID = mDb.tableModel().getTableFromBookingID(b.getBookingID()).getTableID();
+            String t = tableID.substring(1);
 
-            ba.add(
-                "Name: " + g.getFirstName()+ " " + g.getLastName() + " - Date: " +
-                b.getDateString() + " " +b.getStartTime() + " -  Group: " +
-                b.getNumOfPeople()); //getTables();..
+            String fmt = "";
+            String format = "%-15s  %-15s   %s     %2d           %-30.30s";
+            //%[argument_index$][flags][width][.precision]conversion
+            fmt = String.format(format, date,time, t,numPpl, name);
+
+            ba.add(fmt);
         }
+
+
+
+        //ba.add(fmt);
+
+//        String da,ti,na; int nu;
+//
+//        da="23/10/2018";ti="17:00 - 19:00";na="Amy Smith";nu=5;if(nu<10){na=" "+na;}
+//        fmt = String.format(format, da,ti, t,nu,na);
+//        //ba.add(fmt);
+//
+//        da="24/11/2018";ti="18:00 - 19:30";na="John Fogerty and now time for a really long one. And maybe I'll keep increasing and see what happens...";nu=10;if(nu<10){na=" "+na;}
+//        fmt = String.format(format, da,ti, t,nu,na);
+//        //ba.add(fmt);
+//
+//        da="28/11/1990";ti="18:30 - 21:00";na="Daniel Masterton";nu=8;if(nu<10){na=" "+na;}
+//        fmt = String.format(format, da,ti,t,nu,na);
+        //ba.add(fmt);
+
+//        23/10/2018  |  17:00-19:00  |  Amy Smith                   |  5
+//        24/11/2018  |  18:00-19:30  |  John Fogerty                |  4
+//        28/11/1990  |  18:30-21:00  |  Daniel Masterton            |  8
 
         adapter = new ArrayAdapter<>(
                 ListViewActivity.this,

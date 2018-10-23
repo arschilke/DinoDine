@@ -45,7 +45,8 @@ public class PeopleSelectActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), SelectDateActivity.class);
                         intent.putExtra("booking", bookRecord);
                         startActivity(intent);
-                    }catch (NullPointerException numPeople){
+                    }catch (Exception e){
+                        Log.d(".setOnClickListener",e.getMessage());
                         Toast.makeText(PeopleSelectActivity.this, "Invaild Number of People" + numOfPpl, Toast.LENGTH_SHORT).show();
                     }
                 }

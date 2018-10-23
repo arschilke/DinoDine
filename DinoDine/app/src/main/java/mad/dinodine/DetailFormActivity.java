@@ -82,8 +82,11 @@ public class DetailFormActivity extends AppCompatActivity {
                     intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                 }
-                catch (NullPointerException npe){
-                    Toast.makeText(DetailFormActivity.this, "Both Names are Empty", Toast.LENGTH_SHORT).show();
+                //catch (NullPointerException npe){
+                    //Toast.makeText(DetailFormActivity.this, "Both Names are Empty", Toast.LENGTH_SHORT).show();
+                //}
+                catch(Exception z){
+                    Toast.makeText(getApplicationContext(), z.getMessage(), (int) 0);
                 }
 
                 //sends email to guest with booking details

@@ -10,6 +10,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.sql.Time;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import static java.util.Calendar.HOUR_OF_DAY;
 
 public class TimeSelectActivity extends AppCompatActivity {
 
@@ -60,6 +64,8 @@ public class TimeSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), DetailFormActivity.class);
+                Calendar c = new GregorianCalendar();
+                c.set(HOUR_OF_DAY, 10);
                 try{ booking.setStartTime(new Time(start.getHour(),start.getMinute(),0));} //change obj to simple int?
                 catch( NullPointerException npe){
                     Toast.makeText(TimeSelectActivity.this, "Start Time is in the past", Toast.LENGTH_SHORT).show();

@@ -31,12 +31,12 @@ public class Guest {
 
     }
 
-    public Guest(String fname, String lName, String phoneNum, String email){
+    public Guest(String fname, String lName, String phoneNum, String email) /*throws Exception*/{
         this.guestID = UUID.randomUUID().toString();
         this.firstName = fname;
         this.lastName = lName;
         if (fname.trim().equals("") && lName.trim().equals("") ){
-            throw new NullPointerException("Both Names are empty");
+            //throw new Exception("Both Names are empty");
         }
         this.phoneNum = phoneNum;
         this.email = email;
@@ -62,16 +62,16 @@ public class Guest {
     public void setGuestID(String x){this.guestID = x;}
     /* NEEDS TRY AND CATCH
      */
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) /*throws Exception*/{
         this.firstName = firstName;
         if (firstName.equals("") && lastName.equals("")) {
-                throw new NullPointerException("Input Error");
+                //throw new Exception("Input Error");
         }
     }
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) /*throws Exception*/{
         this.lastName = lastName;
         if (firstName.equals("") && lastName.equals("")) {
-            throw new NullPointerException("Input Error");
+            //throw new Exception("Input Error");
         }
         }
     public void setPhoneNum(String phoneNum) {this.phoneNum = phoneNum;}

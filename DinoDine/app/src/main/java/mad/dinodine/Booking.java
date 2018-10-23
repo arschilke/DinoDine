@@ -119,9 +119,9 @@ public class Booking implements Serializable{
 
     //Setters -----------------------------------------------------
     public void setBookingID(String bookingID) {this.bookingID = bookingID;}
-    public void setNumOfPeople(int numOfPeople) {
+    public void setNumOfPeople(int numOfPeople) /*throws Exception*/ {
         if (numOfPeople <= 0 ){
-            throw new NullPointerException("Invaild Number of People");
+            //throw new Exception("Invaild Number of People");
         }
             this.numOfPeople = numOfPeople;
     }

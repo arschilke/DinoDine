@@ -24,9 +24,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+
+import static java.util.Calendar.HOUR_OF_DAY;
+import static java.util.Calendar.MINUTE;
+import static java.util.Calendar.SECOND;
 
 public class Test extends AppCompatActivity{
 
@@ -54,6 +61,7 @@ public class Test extends AppCompatActivity{
                     ll.addView(tmp,0);
                 }
 
+                //display all guests
                 List<Guest> gl = mDb.guestModel().getAllGuests();
                 for(Guest g: gl)
                 {
@@ -128,14 +136,48 @@ public class Test extends AppCompatActivity{
         //String x = AppRoomDB.getInMemoryDatabase(getApplicationContext()).getOpenHelper().getDatabaseName();
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
         //mDb.guestModel().deleteAll(); //will give errors if there are bookings existing.. change constraint to cascade? so everything related is deleted? delete guest= delete booking.
-        mDb.guestModel().deleteGuest("G01");
-        mDb.guestModel().deleteGuest("G02");
+        Calendar c  = Calendar.getInstance(); //current moment/date
+        Calendar time = Calendar.getInstance();
+        time.set(Calendar.HOUR_OF_DAY,17); time.set(Calendar.MINUTE,0); time.set(Calendar.SECOND,0);
+        Time s = new Time(time.getTimeInMillis());//17:00?
+        time.set(Calendar.HOUR_OF_DAY,19); time.set(Calendar.MINUTE,0); time.set(Calendar.SECOND,0);
+        Time e = new Time(time.getTimeInMillis());//19:00?
+        Log.d("SQL_TIME:",s.toString()+ " - " +s.getTime());
+        Log.d("SQL_TIME:",e.toString()+ " - " +e.getTime());
+
+
+        if(mDb.guestModel().getGuestByID("G02")!=null){
+            mDb.allocationModel().deleteAllocation("B02","T02");
+            mDb.bookingModel().deleteBooking("B02");
+            mDb.guestModel().deleteGuest("G02");
+
+            mDb.allocationModel().deleteAllocation("B01","T02");
+            mDb.bookingModel().deleteBooking("B01");
+            mDb.guestModel().deleteGuest("G01");
+            mDb.tableModel().deleteTable("T02");
+        }
+        //mDb.guestModel().deleteGuest("G01");
+        //mDb.guestModel().deleteGuest("G02");
+            mDb.tableModel().insertTable(new Table("T02", 5, 8));
+
         mDb.guestModel().insertGuest( new Guest("G01","Amy","Smith","0000","at@email.com"));
+        mDb.bookingModel().insertBooking(new Booking("B01", 5, c.getTimeInMillis(), s,e,"G01"));
+        mDb.allocationModel().insertAllocation(new Allocation("B01","T02"));
+
         mDb.guestModel().insertGuest(new Guest("G02","Fred", "Jones", "0000","fj@email.com"));
+        mDb.bookingModel().insertBooking(new Booking("B02", 4, c.getTimeInMillis(), s, e, "G02"));
+        mDb.allocationModel().insertAllocation(new Allocation("B02","T02"));
+
+
+        //delete allocation first. shouldn't touch table or booking..
+        //delete booking.. leaves guest alone..
+        //delete guest..
+
+        //tables should never be deleted
 
         String x = mDb.getName();
         String y = mDb.toString();
-        Toast.makeText(getApplicationContext(),x + "\n" + y,(int) 1).show();
+        //Toast.makeText(getApplicationContext(),x + "\n" + y,(int) 1).show();
 
         //populateWithJSON(mDb);
         List<Table> tb = fetchData();

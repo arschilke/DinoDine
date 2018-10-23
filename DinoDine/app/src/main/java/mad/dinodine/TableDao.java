@@ -24,12 +24,18 @@ public interface TableDao {
 
     @Query ("DELETE FROM `table`")
     void deleteAll();
+    @Query ("DELETE FROM `table` where table_id = :t")
+    void deleteTable(String t);
 
     @Query("SELECT * FROM `table` ORDER BY table_id")
     List<Table> getAllTables();
 
     @Query ("SELECT * FROM `table` WHERE table_id = :table")
     Table getTable(String table);
+
+    @Query("SELECT T.table_id,T.capacity,T.max_capacity FROM allocation A,`table` T WHERE A.booking = :b AND A.table_id = T.table_id")
+    Table getTableFromBookingID(String b);
+    //List<Table> getTablesFromBooking(String... b);
 
     //seperate query for max capacity so able to tell when table is more cramped? eg recommend table that has capacity first, rather than max capacity
     @Query ("SELECT * FROM `table` WHERE capacity >= :cap OR max_capacity >= :cap")
