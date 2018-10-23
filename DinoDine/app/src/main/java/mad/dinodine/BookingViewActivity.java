@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,7 +23,10 @@ public class BookingViewActivity extends AppCompatActivity {
     String tableName="";
     TextView title = null;
     ArrayList<Booking> blist;
-    TableLayout tableLayout;
+    ArrayList<String> outputStrings;
+    ArrayAdapter<String> adapter;
+    ListView list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +43,9 @@ public class BookingViewActivity extends AppCompatActivity {
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
 
         blist = (ArrayList<Booking>) mDb.bookingModel().getBookingsForTable(tableName);
-        tableLayout = findViewById(R.id.table_layout);
+        outputStrings = new ArrayList<>();
 
+        list = findViewById(R.id.listView);
         Context context = getApplicationContext();
         SimpleDateFormat df = new SimpleDateFormat("h:mm a");
 
@@ -47,37 +54,19 @@ public class BookingViewActivity extends AppCompatActivity {
         for (int i = 0; i < blist.size(); i++){
             Booking b =  blist.get(i);
             Guest g = mDb.guestModel().getGuestByID(b.getGuest());
-            TableRow tableRow = new TableRow(context);
-            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            tableRow.setLayoutParams(layoutParams);
 
-            TextView textView = new TextView(context);
-            textView.setText(df.format(b.getStartTime()));
-
-            tableRow.addView(textView, 0);
-
-            TextView textView1 = new TextView(context);
-            textView.setText(g.getFirstName());
-            tableRow.addView(textView1, 1);
-
-            TextView textView2 = new TextView(context);
-            textView.setText(g.getLastName());
-            tableRow.addView(textView2, 2);
-
-            TextView textView3 = new TextView(context);
-            textView.setText("" + b.getNumOfPeople());
-            tableRow.addView(textView3, 3);
-
-            TextView textView4 = new TextView(context);
-            textView.setText(g.getEmail());
-            tableRow.addView(textView4, 4);
-
-            TextView textView5 = new TextView(context);
-            textView.setText(g.getPhoneNum());
-            tableRow.addView(textView5, 5);
-
-            tableLayout.addView(tableRow);
+            outputStrings.add(df.format(b.getStartTime()) + "\t" +
+                                        g.getFirstName() + "\t" +
+                                        g.getLastName() + "\t" +
+                                        b.getNumOfPeople() + "\t" +
+                                        g.getEmail()  + "\t" +
+                                        g.getPhoneNum());
         }
-
+        adapter = new ArrayAdapter<>(
+                BookingViewActivity.this,
+                android.R.layout.simple_list_item_1,
+                outputStrings
+        );
+        list.setAdapter(adapter);
     }
 }

@@ -31,7 +31,7 @@ public interface BookingDao {
     @Query("SELECT * FROM booking WHERE guest = :guest")
     Booking getBookingForGuest(String guest);
 
-    @Query("SELECT * " +
+    @Query("SELECT booking_id, numOfPeople, date, startTime, endTime, guest " +
            "FROM booking, allocation " +
            "WHERE allocation.table_id = :table " +
             "AND allocation.booking = booking.booking_id") //join statement with booking and allocation or just put it in allocation, or store table ID in booking object

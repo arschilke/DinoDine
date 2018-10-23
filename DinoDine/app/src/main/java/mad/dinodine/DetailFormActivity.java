@@ -35,7 +35,8 @@ public class DetailFormActivity extends AppCompatActivity {
 
         //getDB and populate with table data from JSON file.
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
-        populateWithJSON(mDb);
+        if(mDb.tableModel().getAllTables().isEmpty()){
+        populateWithJSON(mDb);}
         intent = getIntent();
         booking = (Booking) intent.getSerializableExtra("booking");
 
@@ -100,7 +101,7 @@ public class DetailFormActivity extends AppCompatActivity {
     }
 
     protected void populateWithJSON(@NonNull final AppRoomDB db){
-        db.tableModel().deleteAll();
+       // db.tableModel().deleteAll();
         ArrayList<Table> file = loadDiningTables("");
 
         //if(db.tableModel().getAllTables()==null)
