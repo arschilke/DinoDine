@@ -6,15 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 
 public class BookingViewActivity extends AppCompatActivity {
@@ -22,8 +18,8 @@ public class BookingViewActivity extends AppCompatActivity {
     int tableID=-1;
     String tableName="";
     TextView title = null;
-    ArrayList<Allocation> alist;
-    ListView list[] = new ListView[6];
+    ArrayList<Booking> blist;
+    ListView list[] = new ListView[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +36,34 @@ public class BookingViewActivity extends AppCompatActivity {
 
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
 
-        alist = (ArrayList<Allocation>) mDb.allocationModel().getAllocationsForTable(tableName);
-
-        for(int i = 0;i < 6; i++) {
+        for(int i = 0;i < 7; i++) {
             String l = "listView"+i;
             list[i] = findViewById(getResources().getIdentifier(l, "id", getPackageName()));
         }
+        populateListViews();
+    }
+    public void populateListViews(){
         Context context = getApplicationContext();
         SimpleDateFormat df = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
 
         ArrayList<String> time = new ArrayList<String>();
+        ArrayList<String> date = new ArrayList<String>();
         ArrayList<String> first = new ArrayList<String>();
         ArrayList<String> last = new ArrayList<String>();
         ArrayList<String> num = new ArrayList<String>();
         ArrayList<String> email = new ArrayList<String>();
         ArrayList<String> phone = new ArrayList<String>();
 
-
-
-        for (int i = 0; i < alist.size(); i++){
-
-            Booking b = mDb.bookingModel().getBooking(alist.get(i).getBooking());
+        blist = (ArrayList<Booking>) mDb.bookingModel().getBookingsForTable(tableName);
+        Collections.sort(blist);
+        for (int i = 0; i < blist.size(); i++){
+            Booking b = blist.get(i);
+            //Booking b = mDb.bookingModel().getBooking(alist.get(i).getBooking());
             Guest g = mDb.guestModel().getGuestByID(b.getGuest());
 
             time.add(df.format(b.getStartTime()));
+            date.add(df2.format(b.getDate()));
             first.add(g.getFirstName());
             last.add(g.getLastName());
             num.add("" + b.getNumOfPeople());
@@ -74,18 +74,22 @@ public class BookingViewActivity extends AppCompatActivity {
 
         int i = 0;
         list[i].setAdapter(new ArrayAdapter<String>(
-                    BookingViewActivity.this,
-                    android.R.layout.simple_list_item_1,
-                    time
-            ));
-            i++;
-
+                BookingViewActivity.this,
+                android.R.layout.simple_list_item_1,
+                time
+        ));
+        i++;
+        list[i].setAdapter(new ArrayAdapter<String>(
+                BookingViewActivity.this,
+                android.R.layout.simple_list_item_1,
+                date
+        ));
+        i++;
         list[i].setAdapter(new ArrayAdapter<String>(
                 BookingViewActivity.this,
                 android.R.layout.simple_list_item_1,
                 first
         ));
-
         i++;
 
         list[i].setAdapter(new ArrayAdapter<>(
@@ -114,6 +118,5 @@ public class BookingViewActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 phone
         ));
-
     }
 }

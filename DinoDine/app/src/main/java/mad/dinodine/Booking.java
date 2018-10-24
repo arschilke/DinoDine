@@ -25,7 +25,7 @@ import java.util.UUID;
 @Entity(foreignKeys = @ForeignKey(entity = Guest.class, parentColumns = "guestID", childColumns = "guest"),
         indices = @Index("guest"))
 @TypeConverters({Converters.class})
-public class Booking implements Serializable{
+public class Booking implements Serializable, Comparable{
     //guest key - foreign key index..
     @PrimaryKey
     @NonNull
@@ -142,6 +142,37 @@ public class Booking implements Serializable{
     }
 
     @Override
+    public int compareTo(Object other){
+        Booking other2 = (Booking) other;
+        Date d = getDate();
+        d.setHours(0);
+        d.setMinutes(0);
+        d.setSeconds(0);
+        Date d2 = other2.getDate();
+        d2.setHours(0);
+        d2.setMinutes(0);
+        d2.setSeconds(0);
+        if(d.compareTo(d2) != 0){
+            return d.compareTo(d2);
+        }
+        String aStr = getStartTime().toString();
+        String bStr = other2.getStartTime().toString();
+        //array = {hour, min, sec}
+        int aTimeArray[] = {Integer.parseInt(aStr.substring(0,2)), Integer.parseInt(aStr.substring(3,5)), Integer.parseInt(aStr.substring(6))};
+        int bTimeArray[] = {Integer.parseInt(bStr.substring(0,2)), Integer.parseInt(bStr.substring(3,5)), Integer.parseInt(bStr.substring(6))};
+        for (int x = 0; x < aTimeArray.length; x++){
+            if(aTimeArray[x] > bTimeArray[x] ){
+                return 1;
+            }
+            else if (aTimeArray[x] < bTimeArray[x]) {
+                return -1;
+            }
+        }
+        return 0;
+    }
+
+
+    @Override
     public String toString() {
         return "Booking[ " +
                 "bookingID: " + bookingID +
@@ -152,6 +183,8 @@ public class Booking implements Serializable{
                 ", guestID: " + guest +
                 " ]";
     }
+
+
 
     /*private Date generateDateObj(int day, int month, int year, int hour, int min){
         Calendar cal = Calendar.getInstance();
