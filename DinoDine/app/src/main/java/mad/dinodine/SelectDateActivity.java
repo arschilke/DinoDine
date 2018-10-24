@@ -60,9 +60,9 @@ public class SelectDateActivity extends AppCompatActivity {
                 //set booked date to time of new calendar
                 if(book.getTimeInMillis() < rn.getTimeInMillis()) // if chosen date is less  than current date (before currentDate)
                 {Log.d("ERROR","BOOKED DATE IN PAST");
-                    Toast.makeText(getApplicationContext(),"NO GOOD",(int) 0).show();}
+                    Toast.makeText(getApplicationContext(),"INVALID DATE",(int) 0).show();}
                 else
-                    Toast.makeText(getApplicationContext(),"DATE IS GREAT",(int) 0).show();
+                    Toast.makeText(getApplicationContext(),"DATE IS FINE",(int) 0).show();
                 dateBooked = book.getTimeInMillis();
 
                 //set booking date.
