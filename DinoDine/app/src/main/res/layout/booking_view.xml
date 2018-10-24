@@ -192,12 +192,6 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary" />
 
-                <ImageButton
-                    android:id="@+id/delete"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_delete_black_24dp" />
-
             </LinearLayout>
         </LinearLayout>
 

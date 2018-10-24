@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class BookingViewActivity extends AppCompatActivity {
@@ -47,14 +48,15 @@ public class BookingViewActivity extends AppCompatActivity {
             list[i] = findViewById(getResources().getIdentifier(l, "id", getPackageName()));
         }
 
-        ll = findViewById(R.id.ll);
 
-        deleteButton = findViewById(R.id.delete);
+
+        //deleteButton = findViewById(R.id.delete);
         populateListViews();
 
 
     }
     public void populateListViews(){
+        ll = findViewById(R.id.ll);
         Context context = getApplicationContext();
         SimpleDateFormat df = new SimpleDateFormat("h:mm a");
         SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
@@ -84,6 +86,18 @@ public class BookingViewActivity extends AppCompatActivity {
             phone.add(g.getPhoneNum());
             ImageButton d = new ImageButton(getApplicationContext());
             d.setBackground(getResources().getDrawable(R.drawable.ic_delete_black_24dp,getTheme()));
+            final String id = b.getBookingID();
+            final String gid = g.getGuestID();
+            d.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDb.allocationModel().deleteAllocation(id,tableName);
+                    mDb.bookingModel().deleteBooking(id);
+                    mDb.guestModel().deleteGuest(gid);
+                    ll.removeViews(1,blist.size());
+                    populateListViews();
+                }
+            });
             ll.addView(d, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
 
