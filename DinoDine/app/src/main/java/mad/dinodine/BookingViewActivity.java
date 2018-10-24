@@ -84,7 +84,7 @@ public class BookingViewActivity extends AppCompatActivity {
             phone.add(g.getPhoneNum());
             ImageButton d = new ImageButton(getApplicationContext());
             d.setBackground(getResources().getDrawable(R.drawable.ic_delete_black_24dp,getTheme()));
-            ll.addView(d, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+            ll.addView(d, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
 
         }
