@@ -80,6 +80,6 @@
     <string name="date">Date</string>
     <string name="first">First</string>
     <string name="last">Last</string>
-    <string name="number">Number</string>
+    <string name="number">No.</string>
     <string name="email2">Email</string>
 </resources>

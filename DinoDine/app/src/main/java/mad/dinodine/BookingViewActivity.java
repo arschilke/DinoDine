@@ -61,6 +61,8 @@ public class BookingViewActivity extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("h:mm a");
         SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
 
+
+
         ArrayList<String> time = new ArrayList<String>();
         ArrayList<String> date = new ArrayList<String>();
         ArrayList<String> first = new ArrayList<String>();
