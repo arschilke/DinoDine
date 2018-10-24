@@ -35,8 +35,8 @@ public class DetailFormActivity extends AppCompatActivity {
 
         //getDB and populate with table data from JSON file.
         mDb = AppRoomDB.getInMemoryDatabase(getApplicationContext());
-        if(mDb.tableModel().getAllTables().isEmpty()){
-        populateWithJSON(mDb);}
+        //if(mDb.tableModel().getAllTables().isEmpty()){
+        //populateWithJSON(mDb);}
         intent = getIntent();
         booking = (Booking) intent.getSerializableExtra("booking");
 
@@ -107,67 +107,5 @@ public class DetailFormActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    protected void populateWithJSON(@NonNull final AppRoomDB db){
-       // db.tableModel().deleteAll();
-        ArrayList<Table> file = loadDiningTables("");
-
-        //if(db.tableModel().getAllTables()==null)
-        for(Table a : file) {
-            db.tableModel().insertTable(a);
-        }
-    }
-    ArrayList<Table> loadDiningTables(String filename){
-        //get assets folder.. and set up streams to read it in.
-        AssetManager am = getAssets();
-        InputStream is = null;
-        //String filename = "tables.json";
-        if(filename.isEmpty()){filename= "tables.json";}
-
-        String result = null;
-        JSONObject jObject = null;
-        ArrayList<Table> resultTables = new ArrayList<Table>(); //array we will return.
-        //reading in json file
-        try {
-            is = am.open(filename);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-            result = sb.toString();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Couldn't read from file", (int) 1).show();
-        } finally {
-            try {
-                if (is != null) is.close();
-            } catch (Exception squish) {
-            }
-        }
-
-        try {
-            jObject = new JSONObject(result);
-            JSONArray tables = jObject.getJSONArray("tables");
-            for(int i=0; i < tables.length(); i++) {
-                try{
-                    JSONObject temp = tables.getJSONObject(i);
-                    //insert statement... for RoomDB
-                    String id = temp.getString("id");
-                    int capacity = temp.getInt("capacity");
-                    int maxCapacity = temp.getInt("maxCapacity");
-                    JSONArray neighbours = temp.getJSONArray("canJoin");
-                    ArrayList<String> n = new ArrayList<String>();
-                    for(int j = 0; j < neighbours.length(); j++) {
-                        n.add(neighbours.get(j).toString());
-                    }
-                    Table a = new Table(id,capacity,maxCapacity,n);
-                    resultTables.add(a);
-                } catch(Exception e){Toast.makeText(getApplicationContext(), e.getMessage(), (int) 1).show();}
-            }
-        }
-        catch(Exception e){Toast.makeText(getApplicationContext(), e.getMessage(), (int) 1).show();}
-        return resultTables;
     }
 }
