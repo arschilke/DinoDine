@@ -46,11 +46,13 @@ public class BookingViewActivity extends AppCompatActivity {
             String l = "listView"+i;
             list[i] = findViewById(getResources().getIdentifier(l, "id", getPackageName()));
         }
-        populateListViews();
 
         ll = findViewById(R.id.ll);
 
         deleteButton = findViewById(R.id.delete);
+        populateListViews();
+
+
     }
     public void populateListViews(){
         Context context = getApplicationContext();
@@ -80,7 +82,10 @@ public class BookingViewActivity extends AppCompatActivity {
             num.add("" + b.getNumOfPeople());
             email.add(g.getEmail());
             phone.add(g.getPhoneNum());
-            //delete.add(deleteButton);
+            ImageButton d = new ImageButton(getApplicationContext());
+            d.setBackground(getResources().getDrawable(R.drawable.ic_delete_black_24dp,getTheme()));
+            ll.addView(d, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
 
         }
 

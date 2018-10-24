@@ -196,7 +196,7 @@
                     android:id="@+id/delete"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="ic_delete_black_24dp" />
+                    android:background="@drawable/ic_delete_black_24dp" />
 
             </LinearLayout>
         </LinearLayout>
