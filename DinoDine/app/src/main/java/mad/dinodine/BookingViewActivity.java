@@ -5,7 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.text.SimpleDateFormat;
@@ -20,6 +24,8 @@ public class BookingViewActivity extends AppCompatActivity {
     TextView title = null;
     ArrayList<Booking> blist;
     ListView list[] = new ListView[7];
+    ImageButton deleteButton;
+    LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,10 @@ public class BookingViewActivity extends AppCompatActivity {
             list[i] = findViewById(getResources().getIdentifier(l, "id", getPackageName()));
         }
         populateListViews();
+
+        ll = findViewById(R.id.ll);
+
+        deleteButton = findViewById(R.id.delete);
     }
     public void populateListViews(){
         Context context = getApplicationContext();
@@ -54,6 +64,7 @@ public class BookingViewActivity extends AppCompatActivity {
         ArrayList<String> num = new ArrayList<String>();
         ArrayList<String> email = new ArrayList<String>();
         ArrayList<String> phone = new ArrayList<String>();
+
 
         blist = (ArrayList<Booking>) mDb.bookingModel().getBookingsForTable(tableName);
         Collections.sort(blist);
@@ -69,6 +80,7 @@ public class BookingViewActivity extends AppCompatActivity {
             num.add("" + b.getNumOfPeople());
             email.add(g.getEmail());
             phone.add(g.getPhoneNum());
+            //delete.add(deleteButton);
 
         }
 
@@ -118,5 +130,6 @@ public class BookingViewActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 phone
         ));
+
     }
 }

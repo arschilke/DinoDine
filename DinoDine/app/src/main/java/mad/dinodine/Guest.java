@@ -21,7 +21,7 @@ public class Guest {
     private String email;
 
 
-
+    //Default Constructor
     public Guest() {
         this.guestID = UUID.randomUUID().toString();
         this.firstName = "";
@@ -30,7 +30,7 @@ public class Guest {
         this.email = "-empty-";
 
     }
-
+    //constructor
     public Guest(String fname, String lName, String phoneNum, String email) {
         this.guestID = UUID.randomUUID().toString();
         this.firstName = fname;
@@ -38,7 +38,7 @@ public class Guest {
         this.phoneNum = phoneNum;
         this.email = email;
     }
-
+    //constructor
     public Guest(@NonNull String guestID, String fname, String lName, String phoneNum, String email){
         this.guestID = guestID;
         this.firstName = fname;
