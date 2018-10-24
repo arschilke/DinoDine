@@ -24,7 +24,7 @@ public interface BookingDao {
     @Query("DELETE FROM booking WHERE booking_id=:b")
     void deleteBooking(String b);
 
-    @Query("SELECT * FROM booking ORDER BY booking_id")
+    @Query("SELECT * FROM booking ORDER BY date, startTime")//Order by booking_id
     List<Booking> getAllBookings();
 
     @Query("SELECT * FROM booking WHERE booking_id = :id")

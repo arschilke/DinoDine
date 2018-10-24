@@ -3,10 +3,12 @@ package mad.dinodine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,13 +64,17 @@ public class ListViewActivity extends AppCompatActivity {
         //arrayBookings.addAll(Arrays.asList(getResources().getStringArray(R.array.bookings)));
 
         ArrayList<String> ba = new ArrayList<String>();
+        HashMap<String,String> bookRes = new HashMap<String, String>();
+        ArrayList<Pair<String,String>> res = new ArrayList<>();
+        Pair<String, String> pair = new Pair<>("ID","RESULT");
+
         //Add first row - contains column headers.
         String[] info = {"Date", "Time", "Table", "People", "Name"};
         String infoFormat = "%1$-22s  %2$-15s   %3$s     %4$s   %5$-30.30s";
         ba.add(String.format(infoFormat, (Object[])info));
 
         List<Booking> bl = mDb.bookingModel().getAllBookings();
-
+        //Collections.sort(bl);
         for(Booking b : bl){
             Guest g = mDb.guestModel().getGuestByID(b.getGuest());
             String date = b.getDateString();
@@ -86,17 +94,34 @@ public class ListViewActivity extends AppCompatActivity {
             String format = "%-15s  %-15s   %s     %2d           %-30.30s";
             //%[argument_index$][flags][width][.precision]conversion
             fmt = String.format(Locale.ENGLISH, format, date,time, t,numPpl, name); //remove locale.english if this stuffs up..
-
-            ba.add(fmt);
+            Pair p = new Pair(b.getBookingID(),fmt);
+            res.add(p);
+            ba.add((String) p.second);
+            bookRes.put(b.getBookingID(),fmt);
+            //ba.add(bookRes.get(b.getBookingID()));
         }
 
         adapter = new ArrayAdapter<>(
                 ListViewActivity.this,
                 android.R.layout.simple_list_item_1,
-                ba
+                ba//ba
         );
-
+        final ArrayList<Pair<String,String>> x = res;
         resultL.setAdapter(adapter);
+        resultL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                String member = (String) parent.getItemAtPosition(position);
+                Pair<String,String> a = x.get(position-1);
+                String bid = (String) a.first;
+                //HashMap<String, Object> member = (HashMap<String, Object>) parent.getItemAtPosition(position);
+//Use obj.get("key") here to retrieve the value associated with the "key"
+                Toast.makeText(getApplicationContext(),bid, Toast.LENGTH_LONG)
+                        .show();
+            }
+
+        });
 
         searchV.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

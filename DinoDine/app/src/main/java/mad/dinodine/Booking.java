@@ -47,6 +47,15 @@ public class Booking implements Serializable, Comparable{
         this.guest = guest;
     }
 
+    public Booking(int numOfPeople, long date, Time startTime, Time endTime, String guest) {
+        this.bookingID = UUID.randomUUID().toString();
+        this.numOfPeople = numOfPeople;
+        this.date = new Date(date);
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.guest = guest;
+    }
+
     //@Ignore
     public Booking(){
         this.bookingID = UUID.randomUUID().toString();
